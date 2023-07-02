@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>804</width>
-    <height>403</height>
+    <height>530</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -37,7 +37,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/pic/pic/jxufe.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/login/jxufe.jpg&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
    <widget class="QWidget" name="layoutWidget">
@@ -94,7 +94,7 @@
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources>
-  <include location="res.qrc"/>
+  <include location="../res/res.qrc"/>
  </resources>
  <connections/>
 </ui>
