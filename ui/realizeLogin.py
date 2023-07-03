@@ -1,7 +1,7 @@
 # import logic.login as llogin
 from PyQt5.QtWidgets import QMainWindow
 
-import ui.login as ulogin
+import originalUIFile.login as ulogin
 import ui.realizeStuHome
 
 

@@ -3,7 +3,7 @@ import sys
 from PyQt5.QtWidgets import QMainWindow
 
 import ui.realizeLogin as ulogin
-import ui.stuHome as uStuhome
+import originalUIFile.stuHome as uStuhome
 
 
 class StuHome(QMainWindow):

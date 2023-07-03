@@ -1,7 +1,7 @@
 # import logic.login as llogin
 from PyQt5.QtWidgets import QMainWindow
 
-import ui.adminHome as uadminHome
+import originalUIFile.adminHome as uadminHome
 
 
 class AdminHome(QMainWindow):

@@ -18,7 +18,7 @@
       <sourceFolder url="file://$MODULE_DIR$/logic" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/ui" isTestSource="false" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.10 (django) (7)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="lastF" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="TemplatesService">
