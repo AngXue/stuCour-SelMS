@@ -24,8 +24,8 @@ class LoginWindow(QMainWindow):
         # 测试用
         # user = llogin.login(userName, userPasswd)
         user = None
-        # self.stuHome = ui.realizeStuHome.StuHome(user)
-        self.adminHome = ui.realizeAdminHome.AdminHomeWindow()
+        self.stuHome = ui.realizeStuHome.StuHome(user)
+        # self.adminHome = ui.realizeAdminHome.AdminHomeWindow()
         self.hide()
-        # self.stuHome.show()
-        self.adminHome.show()
+        self.stuHome.show()
+        # self.adminHome.show()
