@@ -2,6 +2,7 @@
 from PyQt5.QtWidgets import QMainWindow
 
 import originalUIFile.login as ulogin
+import ui.realizeAdminHome
 import ui.realizeStuHome
 
 
@@ -21,8 +22,10 @@ class LoginWindow(QMainWindow):
         userName = self.ui.loginNameInput.text()
         userPasswd = self.ui.loginPasswdInput.text()
         # 测试用
-        # stu = llogin.login(userName, userPasswd)
-        stu = None
-        self.stuHome = ui.realizeStuHome.StuHome(stu)
+        # user = llogin.login(userName, userPasswd)
+        user = None
+        # self.stuHome = ui.realizeStuHome.StuHome(user)
+        self.adminHome = ui.realizeAdminHome.AdminHomeWindow()
         self.hide()
-        self.stuHome.show()
+        # self.stuHome.show()
+        self.adminHome.show()

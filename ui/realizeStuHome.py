@@ -2,7 +2,7 @@ import sys
 
 from PyQt5.QtWidgets import QMainWindow
 
-import ui.realizeLogin as ulogin
+import ui.realizeLogin as uLogin
 import originalUIFile.stuHome as uStuhome
 
 
@@ -20,7 +20,7 @@ class StuHome(QMainWindow):
         :return: None
         """
         self.deleteLater()
-        self.loginWindow = ulogin.LoginWindow()
+        self.loginWindow = uLogin.LoginWindow()
         self.loginWindow.show()
 
     def getSelfInform(self):

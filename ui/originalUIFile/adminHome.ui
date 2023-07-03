@@ -7,105 +7,358 @@
     <x>0</x>
     <y>0</y>
     <width>869</width>
-    <height>662</height>
+    <height>700</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>869</width>
+    <height>700</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>869</width>
+    <height>700</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QPushButton" name="pushButton">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>40</y>
-     <width>92</width>
-     <height>28</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>开启选课</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_2">
-   <property name="geometry">
-    <rect>
-     <x>630</x>
-     <y>50</y>
-     <width>92</width>
-     <height>28</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>上传学生信息</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_3">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>450</y>
-     <width>92</width>
-     <height>28</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>管理学院信息</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_5">
-   <property name="geometry">
-    <rect>
-     <x>200</x>
-     <y>40</y>
-     <width>92</width>
-     <height>28</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>关闭选课</string>
-   </property>
-  </widget>
   <widget class="QWidget" name="horizontalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>19</x>
-     <y>120</y>
+     <x>20</x>
+     <y>90</y>
      <width>831</width>
      <height>51</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item alignment="Qt::AlignLeft">
-     <widget class="QLineEdit" name="lineEdit"/>
+     <widget class="QLineEdit" name="deleteStartInput"/>
     </item>
     <item alignment="Qt::AlignLeft">
-     <widget class="QLineEdit" name="lineEdit_2"/>
+     <widget class="QLabel" name="deleteStartPrompt">
+      <property name="text">
+       <string>删除起始ID</string>
+      </property>
+     </widget>
+    </item>
+    <item alignment="Qt::AlignLeft">
+     <widget class="QLineEdit" name="deleteEndInput"/>
+    </item>
+    <item alignment="Qt::AlignLeft">
+     <widget class="QLabel" name="deleteEndPrompt">
+      <property name="text">
+       <string>删除末尾ID</string>
+      </property>
+     </widget>
     </item>
     <item alignment="Qt::AlignRight">
-     <widget class="QPushButton" name="pushButton_6">
+     <widget class="QPushButton" name="deleteUsersButton">
       <property name="text">
-       <string>删除学生信息</string>
+       <string>删除用户信息</string>
       </property>
      </widget>
     </item>
    </layout>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QWidget" name="horizontalLayoutWidget_2">
    <property name="geometry">
     <rect>
-     <x>240</x>
-     <y>180</y>
-     <width>411</width>
-     <height>371</height>
+     <x>19</x>
+     <y>29</y>
+     <width>831</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <item alignment="Qt::AlignLeft">
+     <widget class="QPushButton" name="uploadTeachersInformButton">
+      <property name="text">
+       <string>上传教师信息</string>
+      </property>
+     </widget>
+    </item>
+    <item alignment="Qt::AlignLeft">
+     <widget class="QPushButton" name="uploadStusInformButton">
+      <property name="text">
+       <string>上传学生信息</string>
+      </property>
+     </widget>
+    </item>
+    <item alignment="Qt::AlignRight">
+     <widget class="QPushButton" name="stopSelectSubsButton">
+      <property name="text">
+       <string>关闭选课</string>
+      </property>
+     </widget>
+    </item>
+    <item alignment="Qt::AlignRight">
+     <widget class="QPushButton" name="startSelectSubsButton">
+      <property name="text">
+       <string>开启选课</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="gridLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>19</x>
+     <y>159</y>
+     <width>831</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QLineEdit" name="searchUsersInput"/>
+    </item>
+    <item row="0" column="1">
+     <widget class="QPushButton" name="searchUsersButton">
+      <property name="text">
+       <string>搜索用户</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="Line" name="dividingLine_1">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>140</y>
+     <width>831</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="Line" name="dividingLine_2">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>80</y>
+     <width>831</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QLabel" name="searchUsersResult">
+   <property name="geometry">
+    <rect>
+     <x>21</x>
+     <y>214</y>
+     <width>831</width>
+     <height>431</height>
     </rect>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/admin/屏幕截图 2023-03-30 124350.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/admin/temp.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
+  </widget>
+  <widget class="QLabel" name="topText">
+   <property name="geometry">
+    <rect>
+     <x>400</x>
+     <y>10</y>
+     <width>111</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>管理员专用界面</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="horizontalLayoutWidget_3">
+   <property name="geometry">
+    <rect>
+     <x>19</x>
+     <y>659</y>
+     <width>831</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_3">
+    <item alignment="Qt::AlignLeft">
+     <widget class="QPushButton" name="manageCollegeInformButton">
+      <property name="text">
+       <string>管理学院信息</string>
+      </property>
+     </widget>
+    </item>
+    <item alignment="Qt::AlignHCenter">
+     <widget class="QPushButton" name="logOutButton">
+      <property name="text">
+       <string>登出</string>
+      </property>
+     </widget>
+    </item>
+    <item alignment="Qt::AlignRight">
+     <widget class="QPushButton" name="manageSubsInformButton">
+      <property name="text">
+       <string>管理课程信息</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources>
-  <include location="../res.qrc"/>
+  <include location="../../res/res.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>manageCollegeInformButton</sender>
+   <signal>clicked()</signal>
+   <receiver>Dialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>805</x>
+     <y>623</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>434</x>
+     <y>324</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>deleteUsersButton</sender>
+   <signal>clicked()</signal>
+   <receiver>Dialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>800</x>
+     <y>114</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>434</x>
+     <y>324</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>manageSubsInformButton</sender>
+   <signal>clicked()</signal>
+   <receiver>Dialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>55</x>
+     <y>623</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>434</x>
+     <y>324</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>startSelectSubsButton</sender>
+   <signal>clicked()</signal>
+   <receiver>Dialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>802</x>
+     <y>53</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>434</x>
+     <y>324</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>searchUsersButton</sender>
+   <signal>clicked()</signal>
+   <receiver>Dialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>802</x>
+     <y>178</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>434</x>
+     <y>324</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>stopSelectSubsButton</sender>
+   <signal>clicked()</signal>
+   <receiver>Dialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>593</x>
+     <y>53</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>434</x>
+     <y>324</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>uploadStusInformButton</sender>
+   <signal>clicked()</signal>
+   <receiver>Dialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>278</x>
+     <y>53</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>434</x>
+     <y>324</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>uploadTeachersInformButton</sender>
+   <signal>clicked()</signal>
+   <receiver>Dialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>69</x>
+     <y>53</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>434</x>
+     <y>324</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>logOutButton</sender>
+   <signal>clicked()</signal>
+   <receiver>Dialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>433</x>
+     <y>673</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>434</x>
+     <y>349</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
