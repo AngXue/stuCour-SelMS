@@ -1,7 +1,8 @@
 import sys
 
-from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtWidgets import QMainWindow
 
+import ui.realizeLogin as ulogin
 import ui.stuHome as uStuhome
 
 
@@ -18,7 +19,9 @@ class StuHome(QMainWindow):
         登出按钮槽函数
         :return: None
         """
-        pass
+        self.deleteLater()
+        self.loginWindow = ulogin.LoginWindow()
+        self.loginWindow.show()
 
     def getSelfInform(self):
         """
@@ -42,8 +45,17 @@ class StuHome(QMainWindow):
         pass
 
 
+def showStuHome(student):
+    """
+    显示学生主界面
+    :param student: 学生对象
+    :return: None
+    """
+    uStuHome = StuHome(student)
+    uStuHome.show()
+
+
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    win = StuHome()
-    win.show()
+    showStuHome(None)
     sys.exit(app.exec_())

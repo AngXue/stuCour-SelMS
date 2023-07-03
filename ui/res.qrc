@@ -2,4 +2,7 @@
   <qresource prefix="login">
     <file>../res/jxufe.jpg</file>
   </qresource>
+  <qresource prefix="admin">
+    <file>屏幕截图 2023-03-30 124350.png</file>
+  </qresource>
 </RCC>
