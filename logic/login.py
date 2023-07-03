@@ -1,4 +1,4 @@
-from dataBaseControl.data import *
+from dataBaseControl.DataStudent import *
 
 
 def login(id, password):

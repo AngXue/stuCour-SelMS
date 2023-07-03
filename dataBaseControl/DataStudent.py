@@ -2,20 +2,14 @@ import pymysql
 import random
 from faker import Faker
 
-# 打开数据库连接
-conn = pymysql.connect(host='localhost',
-                       port=3306,
-                       user='root',
-                       passwd='123456',
-                       charset='utf8',
-                       db="test"
-                       )
 
-# 使用 cursor() 方法创建一个游标对象 cursor
-cursor = conn.cursor()
 
 #查帐号
 def quiryaccount(id,password):
+    # 打开数据库连接
+    conn = pymysql.connect(host='localhost',port=3306,user='root',passwd='123456',charset='utf8',db="test")
+    # 使用 cursor() 方法创建一个游标对象 cursor
+    cursor = conn.cursor()
 
     sql="select ID from account where ID='%d' and Password='%s' " %(id,password)
     try:
@@ -33,9 +27,14 @@ def quiryaccount(id,password):
 
     except:
         conn.rollback()
+    conn.close()
 
 #查选课结果
 def electresult(id):
+    # 打开数据库连接
+    conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")
+    # 使用 cursor() 方法创建一个游标对象 cursor
+    cursor = conn.cursor()
 
     sql = "select CourseID,CourseName,score,CourseTime,CoursePlace from course where SelectID=\
     (select selectresult.SelectID from selectresult where ID='%d') " % (id)
@@ -48,8 +47,14 @@ def electresult(id):
     except:
         conn.rollback()
 
+    conn.close()
+
 #查找能选课程
 def Trainplain(major,grade):
+    # 打开数据库连接
+    conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")
+    # 使用 cursor() 方法创建一个游标对象 cursor
+    cursor = conn.cursor()
 
     sql="select CourseID,CourseName,score,CourseTime,CoursePlace,Num,Selectnum from course where major='%s' and grade='%d' " % \
         (major,grade)
@@ -62,9 +67,15 @@ def Trainplain(major,grade):
     except:
         conn.rollback()
 
+    conn.close()
 
 #按名字查找课程
 def SearchCourse(coursename):
+    # 打开数据库连接
+    conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")
+    # 使用 cursor() 方法创建一个游标对象 cursor
+    cursor = conn.cursor()
+
     sql = "select CourseID,CourseName,score,CourseTime,CoursePlace,Num,Selectnum from course where CourseName like '%%%s%%'" %(coursename)
 
     try:
@@ -75,4 +86,4 @@ def SearchCourse(coursename):
     except:
         conn.rollback()
 
-
+    conn.close()

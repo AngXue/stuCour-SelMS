@@ -1,6 +1,7 @@
-from dataBaseControl.data import *
+from dataBaseControl.DataStudent import *
 
 class Student:
+    time = ["", "8:00", "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"]
     def __init__(self, id, name, college, major, grade):
         self.id = id
         self.name = name
@@ -30,17 +31,33 @@ class Student:
         :return: 每个课程包括课程号，课程名，学分，上课时间，地点，可选人数，已选人数
                 ((2001, '数据库', 4, 13, '一教101', 30, 0),)
         '''
-        return Trainplain(self.major, self.grade)
+        res = Trainplain(self.major, self.grade)
+        lis = []
+        for i in range(len(res)):
+            k = list(res[0])
+            l = k[3] // 10
+            r = k[3] % 10
+            k[3] = "%s~%s" % (self.time[l], self.time[r])
+            lis.append(k)
+        return lis
+
 
     def searchcourse(self, coursename):
         '''
-
         :param coursename: 搜索的课程名，不需要全名
         :return: 返回搜索到的课程
                 ((2001, '数据库', 4, 13, '一教101', 30, 0),)
         '''
-        return SearchCourse(coursename)
+        res = SearchCourse(coursename)
+        lis = []
+        for i in range(len(res)):
+            k = list(res[0])
+            l = k[3] // 10
+            r = k[3] % 10
+            k[3] = "%s~%s" % (self.time[l], self.time[r])
+            lis.append(k)
+        return lis
 
 
 # app = Student(50001, '软件与物联网工程学院', '软件工程', '软件工程', 2)
-# app.searchcourse('据')
+# print(app.searchcourse('据'))
