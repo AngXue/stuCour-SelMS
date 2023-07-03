@@ -31,28 +31,28 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item alignment="Qt::AlignRight|Qt::AlignBottom">
-         <widget class="QLabel" name="label">
+         <widget class="QLabel" name="loginNamePrompt">
           <property name="text">
            <string>账号：    </string>
           </property>
          </widget>
         </item>
         <item alignment="Qt::AlignLeft|Qt::AlignBottom">
-         <widget class="QLineEdit" name="lineEdit"/>
+         <widget class="QLineEdit" name="loginNameInput"/>
         </item>
        </layout>
       </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item alignment="Qt::AlignRight">
-         <widget class="QLabel" name="passwdPrompt">
+         <widget class="QLabel" name="loginPasswdPrompt">
           <property name="text">
            <string>密码：    </string>
           </property>
          </widget>
         </item>
         <item alignment="Qt::AlignLeft">
-         <widget class="QLineEdit" name="lineEdit_2"/>
+         <widget class="QLineEdit" name="loginPasswdInput"/>
         </item>
        </layout>
       </item>
