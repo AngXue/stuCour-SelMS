@@ -1,5 +1,5 @@
 <RCC>
   <qresource prefix="login">
-    <file>jxufe.jpg</file>
+    <file>../res/jxufe.jpg</file>
   </qresource>
 </RCC>
