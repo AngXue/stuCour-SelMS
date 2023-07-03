@@ -1,6 +1,6 @@
 import sys
 
-from PyQt5.QtWidgets import QMainWindow
+from PyQt5.QtWidgets import QMainWindow,QApplication
 
 import ui.realizeLogin as uLogin
 import originalUIFile.stuHome as uStuhome
