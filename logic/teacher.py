@@ -41,5 +41,5 @@ class teacher:
         return lis
 
 
-app=teacher(10001,'老王','硕士研究生','博士学位',101,'软件与物联网工程学院')
-print(app.searchteaching())
+# app=teacher(10001,'老王','硕士研究生','博士学位',101,'软件与物联网工程学院')
+# print(app.searchteaching())
