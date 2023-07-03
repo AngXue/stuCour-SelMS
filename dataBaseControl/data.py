@@ -1,6 +1,4 @@
 import pymysql
-import random
-from faker import Faker
 
 # 打开数据库连接
 conn = pymysql.connect(host='localhost',
@@ -15,16 +13,15 @@ conn = pymysql.connect(host='localhost',
 cursor = conn.cursor()
 
 
-def quiryaccount(id,password):
-
-    sql="select ID from account where ID='%d' and Password='123456' " %(id)
+def quiryaccount(id, password):
+    sql = "select ID from account where ID='%d' and Password='123456' " % (id)
     try:
         cursor.execute(sql)
         results = cursor.fetchall()
-        if (len(results)==0):
-            return (False,0)
+        if (len(results) == 0):
+            return (False, 0)
         else:
-            return (True,id)
+            return (True, id)
     except:
         conn.rollback()
 
