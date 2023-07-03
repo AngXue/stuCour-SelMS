@@ -22,9 +22,9 @@ def quiryaccount(id,password):
         cursor.execute(sql)
         results = cursor.fetchall()
         if (len(results)==0):
-            return (False,0)
+            return [False,0]
         else:
-            return (True,id)
+            return [True,id]
     except:
         conn.rollback()
 
