@@ -21,8 +21,9 @@ class Student:
         '''
         返回学生的选课结果
         :return:list
+                ((2001, '数据库', 4, 13, '一教101'),)
         '''
-        print(electresult(self.id))
+        return electresult(self.id)
 
     def selectplain(self):
         '''
@@ -33,5 +34,5 @@ class Student:
         return Trainplain(self.major, self.grade)
 
 
-# app = Student(50001, '软件与物联网工程学院', '软件工程', '软件工程', 2)
-# app.selectionresults()
+app = Student(50001, '软件与物联网工程学院', '软件工程', '软件工程', 2)
+app.selectionresults()
