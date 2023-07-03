@@ -1,6 +1,5 @@
 from dataBaseControl.data import *
 
-
 class Student:
     def __init__(self, id, name, college, major, grade):
         self.id = id
@@ -33,6 +32,15 @@ class Student:
         '''
         return Trainplain(self.major, self.grade)
 
+    def searchcourse(self, coursename):
+        '''
 
-app = Student(50001, '软件与物联网工程学院', '软件工程', '软件工程', 2)
-app.selectionresults()
+        :param coursename: 搜索的课程名，不需要全名
+        :return: 返回搜索到的课程
+                ((2001, '数据库', 4, 13, '一教101', 30, 0),)
+        '''
+        return SearchCourse(coursename)
+
+
+# app = Student(50001, '软件与物联网工程学院', '软件工程', '软件工程', 2)
+# app.searchcourse('据')

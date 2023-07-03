@@ -17,7 +17,7 @@ cursor = conn.cursor()
 #查帐号
 def quiryaccount(id,password):
 
-    sql="select ID from account where ID='%d' and Password='123456' " %(id)
+    sql="select ID from account where ID='%d' and Password='%s' " %(id,password)
     try:
         cursor.execute(sql)
         results = cursor.fetchall()
@@ -53,6 +53,19 @@ def Trainplain(major,grade):
 
     sql="select CourseID,CourseName,score,CourseTime,CoursePlace,Num,Selectnum from course where major='%s' and grade='%d' " % \
         (major,grade)
+
+    try:
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        return results
+
+    except:
+        conn.rollback()
+
+
+#按名字查找课程
+def SearchCourse(coursename):
+    sql = "select CourseID,CourseName,score,CourseTime,CoursePlace,Num,Selectnum from course where CourseName like '%%%s%%'" %(coursename)
 
     try:
         cursor.execute(sql)
