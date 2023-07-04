@@ -12,6 +12,15 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_Dialog(object):
+    def __init__(self, Dialog):
+        self.setupUi(Dialog)
+        self.slot_init(Dialog)
+
+    def slot_init(self, Dialog):
+        self.feedbackButton.clicked.connect(Dialog.test)  # type: ignore
+        self.logOutButton.clicked.connect(Dialog.logOut)  # type: ignore
+        self.selfInfomButton.clicked.connect(Dialog.test)  # type: ignore
+
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.resize(846, 663)
@@ -56,9 +65,6 @@ class Ui_Dialog(object):
         self.teacherSubsPrompt.setObjectName("teacherSubsPrompt")
 
         self.retranslateUi(Dialog)
-        self.feedbackButton.clicked.connect(Dialog.accept) # type: ignore
-        self.logOutButton.clicked.connect(Dialog.accept) # type: ignore
-        self.selfInfomButton.clicked.connect(Dialog.accept) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
@@ -67,4 +73,5 @@ class Ui_Dialog(object):
         self.feedbackButton.setText(_translate("Dialog", "反馈"))
         self.logOutButton.setText(_translate("Dialog", "登出"))
         self.selfInfomButton.setText(_translate("Dialog", "个人信息"))
-        self.teacherSubsPrompt.setText(_translate("Dialog", "<html><head/><body><p><span style=\" font-size:14pt;\">任课信息：</span></p></body></html>"))
+        self.teacherSubsPrompt.setText(_translate("Dialog",
+                                                  "<html><head/><body><p><span style=\" font-size:14pt;\">任课信息：</span></p></body></html>"))

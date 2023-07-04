@@ -1,16 +1,16 @@
-# import logic.login as llogin
 from PyQt5.QtWidgets import QMainWindow
 
-import originalUIFile.adminHome as uadminHome
+import originalUIFile.teacherHome as uTeacherHome
 import ui.realizeLogin as uLogin
 
 
-class AdminHomeWindow(QMainWindow):
-    def __init__(self, admin, parent=None):
+class TeacherHomeWindow(QMainWindow):
+    def __init__(self, teacher, parent=None):
         super(QMainWindow, self).__init__(parent)
-        self.ui = uadminHome.Ui_Dialog(self)
-        self.admin = admin  # 管理员对象
-        self.setWindowTitle('管理员主界面')
+        self.ui = uTeacherHome.Ui_Dialog(self)
+        self.setWindowTitle('教师主界面')
+        self.teacher = teacher  # 学生对象
+        # self.ui.showSearchResult
 
     def test(self):
         pass
