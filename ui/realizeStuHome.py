@@ -1,9 +1,10 @@
 from PyQt5.QtWidgets import QMainWindow
-
+from PyQt5.QtWidgets import QTableWidgetItem
 import originalUIFile.stuHome as uStuhome
 import ui.realizeLogin as uLogin
-import ui.realizeUserInformWindow as uUserInformWindow
 import ui.realizeSelectedSubsWindow as uSelectedSubsWindow
+import ui.realizeUserInformWindow as uUserInformWindow
+import logic.student as lstudent
 
 
 class StuHome(QMainWindow):
@@ -15,7 +16,7 @@ class StuHome(QMainWindow):
         self.student = student  # 学生对象
         self.slot_init()
         # 用户一进入主界面就显示可选课程
-        # self.ui.showSearchResult
+        self.showCanSelectSubs()
 
     def slot_init(self):
         """
@@ -28,9 +29,27 @@ class StuHome(QMainWindow):
         self.ui.searchSubsButton.clicked.connect(self.searchSubs)
         self.ui.searchSubsInput.returnPressed.connect(self.searchSubs)
         self.ui.searchSubsInput.setPlaceholderText('请输入课程名称(完整ID或部分名称)')
-        txt = "此处显示搜索结果"
-        self.ui.showSearchResult.setText(
-            '<html><head/><body><p align="center">{}<span style=" font-size:12pt;">'.format(txt))
+
+    def showCanSelectSubs(self):
+        """
+        显示可选课程
+        :return:
+        """
+        # data数据形式 ((2001, '数据库', 4, 13, '一教101', 30, 0),)
+        # 测试数据
+        data = ((2001, '数据库', 4, 13, '一教101', 30, 0), (2002, '数据库', 4, 13, '一教101', 30, 0))
+        # data = self.student.getCanSelectSubs()  # TODO: 调用学生对象的获取可选课程函数
+        # 将数据显示在表格中
+        self.ui.showSearchResult.setRowCount(len(data))
+        self.ui.showSearchResult.setColumnCount(len(data[0]))
+        for i in range(len(data)):
+            for j in range(len(data[i])):
+                self.ui.showSearchResult.setItem(i, j, QTableWidgetItem(str(data[i][j])))
+        # 设置表头
+        self.ui.showSearchResult.setHorizontalHeaderLabels(
+            ['课程ID', '课程名', '学分', '上课时间', '上课地点', '可选人数', '已选人数'])
+        # 设置表格不可编辑
+        self.ui.showSearchResult.setEditTriggers(self.ui.showSearchResult.NoEditTriggers)
 
     def logOut(self):
         """

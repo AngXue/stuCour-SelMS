@@ -25,7 +25,7 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QTableView" name="showSelectedSubs">
+  <widget class="QTableWidget" name="showSelectedSubs">
    <property name="geometry">
     <rect>
      <x>5</x>

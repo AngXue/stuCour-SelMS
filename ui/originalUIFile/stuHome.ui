@@ -81,17 +81,26 @@
     </item>
    </layout>
   </widget>
-  <widget class="QLabel" name="showSearchResult">
+  <widget class="QTableWidget" name="showSearchResult">
    <property name="geometry">
     <rect>
-     <x>51</x>
-     <y>185</y>
-     <width>651</width>
-     <height>361</height>
+     <x>25</x>
+     <y>161</y>
+     <width>711</width>
+     <height>431</height>
     </rect>
    </property>
-   <property name="text">
-    <string/>
+   <property name="minimumSize">
+    <size>
+     <width>711</width>
+     <height>431</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>711</width>
+     <height>431</height>
+    </size>
    </property>
   </widget>
  </widget>

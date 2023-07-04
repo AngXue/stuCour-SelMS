@@ -26,4 +26,4 @@ class UserInformWindow(QMainWindow):
         :return: None
         """
         self.ui.showSelfInform.setText(
-            '<html><head/><body><p align="center">ID: {}<span style=" font-size:12pt;">'.format(self.user[1]))
+            '<html><head/><body><p align="center">ID: {}<span style=" font-size:12pt;">'.format(self.user.id))

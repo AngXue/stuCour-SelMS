@@ -4,6 +4,7 @@ import originalUIFile.login as ulogin
 import ui.realizeAdminHome
 import ui.realizeStuHome
 import ui.realizeTeacherHome
+import logic.student as lstudent
 
 
 class LoginWindow(QMainWindow):
@@ -43,22 +44,25 @@ class LoginWindow(QMainWindow):
         # 从输入框获取用户名和密码
         userName = self.ui.loginNameInput.text()
         userPasswd = self.ui.loginPasswdInput.text()
-        # userInform = llogin.login(userName, userPasswd)
+        # userInform = llogin.login(userName, userPasswd) TODO: 调用登录函数, 返回登录信息
+        # user = gen(ID, identity) TODO: 调用生成对象函数, 返回对象
+        # id, name, college, major, grade
+        user = lstudent.Student(1, '张三', '计算机学院', '计算机科学与技术', 2018)
         # [True/False, id/0,'admin'/'student'/'teacher'/'wrong']
         # userInform = [True, 1, 'admin']
         userInform = [True, 2, 'student']
         # userInform = [True, 1, 'teacher']
         # userInform = [False, 0, 'wrong']
-        if userInform[0]:
+        if userInform[0]:  # TODO: userInform[0]
             self.hide()
             if userInform[2] == 'student':
-                self.stuHome = ui.realizeStuHome.StuHome(userInform)
+                self.stuHome = ui.realizeStuHome.StuHome(user)
                 self.stuHome.show()
             elif userInform[2] == 'admin':
-                self.adminHome = ui.realizeAdminHome.AdminHomeWindow(userInform)
+                self.adminHome = ui.realizeAdminHome.AdminHomeWindow(user)
                 self.adminHome.show()
             elif userInform[2] == 'teacher':
-                self.teacherHome = ui.realizeTeacherHome.TeacherHomeWindow(userInform)
+                self.teacherHome = ui.realizeTeacherHome.TeacherHomeWindow(user)
                 self.teacherHome.show()
         else:
             # 清空输入框，设置提示信息
