@@ -35,7 +35,7 @@ def SearchTeaching(name):
     conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")
     cursor = conn.cursor()
 
-    sql = "select CourseID,CourseName,score,CourseTime,CoursePlace,Selectnum from course where TeacherName='%s' " % (name)
+    sql = "select SelectID, CourseID,CourseName,score,CourseTime,CoursePlace,Selectnum from course where TeacherName='%s' " % (name)
 
     try:
         cursor.execute(sql)

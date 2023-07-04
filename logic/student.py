@@ -89,7 +89,21 @@ class Student:
         else:
             return False
 
+    # 退课
+    def withdrawalcourse(self,selectid):
+        '''
+        推选课程
+        :param selectid: 推选的选课号
+        :return:
+        '''
+        WithdrawalCourse(self.id,selectid)
 
-# app = Student(50001, '软件与物联网工程学院', '软件工程', '软件工程', 2, 'student')
-# print(app.choosecourse(2,'java','周三',13))
-# print(app.searchcourse("数据"))
+
+
+
+
+
+# app = Student(50001, '杰杰','软件与物联网工程学院', '软件工程', 2, 'student')
+# # print(app.choosecourse(2,'java','周三',13))
+# # print(app.searchcourse("数据"))
+# print(app.withdrawalcourse(3))

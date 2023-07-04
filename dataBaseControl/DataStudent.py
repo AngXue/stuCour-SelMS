@@ -183,7 +183,7 @@ def UpDateCourse(num,selectid):
     # 使用 cursor() 方法创建一个游标对象 cursor
     cursor = conn.cursor()
 
-    sql = "UPDATE course  SET Num = '%d' WHERE \
+    sql = "UPDATE course  SET Selectnum = '%d' WHERE \
     SelectID = '%d' " % (num, selectid)
 
     try:
@@ -259,6 +259,42 @@ def CheckScore(id,selectid):
         return True
     else:
         return False
+
+
+#推选课程
+def WithdrawalCourse(id,selectID):
+    conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")
+    # 使用 cursor() 方法创建一个游标对象 cursor
+    cursor = conn.cursor()
+
+    sql = "DELETE FROM selectresult WHERE SelectID='%d' and ID='%d' " % (selectID,id)
+
+    try:
+        cursor.execute(sql)
+        conn.commit()
+    except:
+        conn.rollback()
+
+    sql = "select Selectnum from course where SelectID = '%d'  " % (selectID)
+    num=0
+    try:
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        num = results[0][0]
+    except:
+        conn.rollback()
+
+    sql = "UPDATE course  SET Selectnum = '%d' WHERE SelectID = '%d' " % (num-1, selectID)
+    try:
+        cursor.execute(sql)
+        conn.commit()
+    except:
+        conn.rollback()
+
+    conn.close()
+
+
+
 
 
 

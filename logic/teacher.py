@@ -5,7 +5,7 @@ class Teacher:
     time = ["", "8:00", "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"]
 
     def __init__(self, id, name, education, degree, collegeID, college,identify):
-        self.ID = id
+        self.id = id
         self.name = name
         self.education = education
         self.degree = degree
@@ -19,7 +19,7 @@ class Teacher:
         返回个人信息
         :return: 工号，姓名，学历，学位，学院号，学院名
         """
-        return [self.ID, self.name, self.education, self.degree, self.collegeID, self.college]
+        return [self.id, self.name, self.education, self.degree, self.collegeID, self.college]
 
     # 发送反馈老师信息
     def feedback(self, messege):
@@ -34,13 +34,13 @@ class Teacher:
         """
         res = SearchTeaching(self.name)
         lis = []
-        for i in range(len(res)):
-            k = list(res[0])
-            l = k[3] // 10
-            r = k[3] % 10
-            k[3] = "%s~%s" % (self.time[l], self.time[r])
+        for i in res:
+            k = list(i)
+            l = k[4] // 10
+            r = k[4] % 10
+            k[4] = "%s~%s" % (self.time[l], self.time[r])
             lis.append(k)
         return lis
 
-# app=teacher(10001,'老王','硕士研究生','博士学位',101,'软件与物联网工程学院')
+# app=Teacher(1002,'老王','硕士研究生','博士学位',101,'软件与物联网工程学院','teacher')
 # print(app.searchteaching())
