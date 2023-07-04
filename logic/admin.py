@@ -102,7 +102,33 @@ class Admin:
         '''
         return self.flag
 
-#
-# app = Admin()
-# print(app.uploadstudent("Student.xlsx"))
+
+    #上传课程或培养方案
+    def uploadcourse(self,place):
+        '''
+        上传课程
+        :param
+        place: 文件地址
+        :return:
+        '''
+        df = pd.read_excel(place)
+        res = []
+        for i in range(df.shape[0]):
+            lis = []
+            for j in df.values[i]:
+                lis.append(j)
+            res.append(lis)
+        #print(res)
+
+        UploadCourse(res)
+        ArrangeCourse(res)
+
+
+
+
+app = Admin()
+print(app.uploadstudent("Student.xlsx"))
+print(app.uploadcourse("软件工程.xlsx"))
 #print(app.uploadteacher("Teacher.xlsx"))
+
+
