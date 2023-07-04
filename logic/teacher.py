@@ -4,7 +4,7 @@ from dataBaseControl.DataTeacher import *
 class Teacher:
     time = ["", "8:00", "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"]
 
-    def __init__(self, id, name, education, degree, collegeID, college,identify):
+    def __init__(self, id, name, education, degree, collegeID, college,identify,major):
         self.id = id
         self.name = name
         self.education = education
@@ -12,14 +12,14 @@ class Teacher:
         self.collegeID = collegeID
         self.college = college
         self.identify=identify
-
+        self.major = major
     # 返回老师信息信息
     def selfinfomation(self):
         """
         返回个人信息
         :return: 工号，姓名，学历，学位，学院号，学院名
         """
-        return [self.id, self.name, self.education, self.degree, self.collegeID, self.college]
+        return [self.id, self.name, self.education, self.degree, self.collegeID, self.college,self.major,self.identify]
 
     # 发送反馈老师信息
     def feedback(self, messege):

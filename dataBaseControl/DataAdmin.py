@@ -190,3 +190,105 @@ def UploadCollege(lis):
         except:
             conn.rollback()
     conn.close()
+
+
+import pymysql
+import random
+
+sum=0
+
+def ViewMessege():
+    # 打开数据库连接
+
+    cursor = conn.cursor()
+
+    for i in lis:
+        sql = "insert into  teacherlist values('%d','%s','%s','%s','%d','%s','%s')" % (i[0],i[1],i[2],i[3],i[4],i[5],i[6])
+        sql = "insert into  teacherlist values('%d','%s','%s','%s','%d','%s','%s','%s')" % (i[0],i[1],i[2],i[3],i[4],i[5],i[6],i[7])
+        try:
+            cursor.execute(sql)
+            conn.commit()
+
+        except:
+            conn.rollback()
+    conn.close()
+
+
+
+def UploadCourse(res):
+    conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")
+    cursor = conn.cursor()
+
+    for i in res:
+        sql = "insert into  trainingplan values('%d','%s','%d','%s','%d')" % (i[0], i[1], i[2], i[3],i[4])
+        try:
+            cursor.execute(sql)
+            conn.commit()
+        except:
+            conn.rollback()
+    conn.close()
+
+
+def ArrangeCourse(res):
+    conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")
+    cursor = conn.cursor()
+
+    # sql = "select  Name,Major from teacherlist "
+    teachername=[]
+    # kkk=[]
+    # try:
+    #     cursor.execute(sql)
+    #     result=cursor.fetchall()
+    #     for i in result:
+    #         teachername.append(list(i))
+    # except:
+    #     conn.rollback()
+    for i in res:
+        sql = "select  Name from teacherlist where Major='%s'" %(i[3])
+        kkk = []
+        try:
+            cursor.execute(sql)
+            results=cursor.fetchall()
+            for j in results:
+                kkk.append(j[0])
+        except:
+            conn.rollback()
+        teachername.append(kkk)
+
+
+    #print(teachername)
+    sql = " select  * from  classroom "
+    Classroom = []
+    try:
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        for i in results:
+            Classroom.append(i[0])
+    except:
+        conn.rollback()
+
+    temp=[12,13,14,24,15,35,25,68,79,69]
+    roomlen=len(Classroom)
+    Week=['周一','周二','周三','周四','周五']
+    cnt=-1
+    for i in res:
+        global sum
+        sum+=1
+        cnt+=1
+
+        TN=teachername[cnt][random.randint(0,len(teachername[cnt])-1)]
+        TP=temp[random.randint(0, 9)]
+        CR=Classroom[random.randint(0,roomlen-1)]
+        WK=Week[random.randint(0,4)]
+        sql = "insert  into  course \
+        values('%d','%d','%s','%d','%d','%s','%d','%d','%d','%s','%s','%s')" % (sum,i[0], i[1], i[2],TP,\
+        CR,10,0,i[4]//2,i[3],TN,WK)
+        try:
+            cursor.execute(sql)
+            conn.commit()
+        except:
+            conn.rollback()
+    conn.close()
+
+
+
