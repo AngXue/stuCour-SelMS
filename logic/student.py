@@ -78,7 +78,7 @@ class Student:
         :return: 选课成功为true 失败为false
         '''
 
-        if (CheckCourse(Name) and CheckTime(Weektime,Daytime)):
+        if (CheckCourse(Name) and CheckTime(Weektime,Daytime) and CheckScore(self.id,SelectId)):
             num = QueryCourse(SelectId)
             if (num > 0):
                 AddCourse(self.id, SelectId)

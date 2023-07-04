@@ -64,7 +64,6 @@ class Admin:
             for j in df.values[i]:
                 lis.append(j)
             res.append(lis)
-
         UploadStudent(res)
 
     def uploadcollege(self, place):
@@ -108,5 +107,6 @@ class Admin:
         return self.flag
 
 #
-# app = admin(10001)
-# print(app.uploadcollege("F:\SelectCourse\logic\College.xlsx"))
+app = Admin()
+#print(app.uploadstudent("Student.xlsx"))
+print(app.uploadteacher("Teacher.xlsx"))

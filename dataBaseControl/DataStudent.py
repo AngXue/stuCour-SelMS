@@ -171,7 +171,7 @@ def UpDateCourse(num,selectid):
     # 使用 cursor() 方法创建一个游标对象 cursor
     cursor = conn.cursor()
 
-    sql = "UPDATE employees  SET Num = '%d' WHERE \
+    sql = "UPDATE course  SET Num = '%d' WHERE \
     SelectID = '%d' " % (num, selectid)
 
     try:
@@ -184,7 +184,12 @@ def UpDateCourse(num,selectid):
 
 
 def CheckTime(weektime,daytime):
-    # 打开数据库连接
+    '''
+    检查学生时间是否冲突
+    :param weektime: 周三
+    :param daytime:  13
+    :return: 不冲突 true, 冲突为false
+    '''
     conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")
     # 使用 cursor() 方法创建一个游标对象 cursor
     cursor = conn.cursor()
@@ -202,6 +207,46 @@ def CheckTime(weektime,daytime):
     except:
         conn.rollback()
 
+
+def CheckScore(id,selectid):
+    '''
+    检查学分是否还够
+    :param id:
+    :param selectid:
+    :return:  够 true 不够 false
+    '''
+    conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")
+    # 使用 cursor() 方法创建一个游标对象 cursor
+    cursor = conn.cursor()
+
+    sql = "select * from course where SelectID = '%d'  " % (selectid)
+    score1=0
+    score2=0
+    try:
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        conn.close()
+        score1+=results[0][3]
+    except:
+        conn.rollback()
+
+    sql = "select * from studentscore where ID = '%d'  " % (id)
+
+    try:
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        sum=results[0][2]
+        score2+=results[0][3]
+    except:
+        conn.rollback()
+
+    if(sum>=score1+score2):
+        sql = "UPDATE studentscore  SET score = '%d' WHERE D = '%d' " % (score1, score2)
+        cursor.execute(sql)
+        conn.commit()
+        return True
+    else:
+        return False
 
 
 
