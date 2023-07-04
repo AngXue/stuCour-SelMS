@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import QMainWindow
 from PyQt5.QtWidgets import QTreeWidgetItem
 
 import originalUIFile.adminCollegeManage as uAdminColMana
+import ui.realizeMajorTrainWindow as uMajorTrain
 
 
 class AdminColManaWindow(QMainWindow):
@@ -12,6 +13,7 @@ class AdminColManaWindow(QMainWindow):
         self.ui = uAdminColMana.Ui_Dialog()
         self.ui.setupUi(self)
         self.admin = admin  # 管理员对象
+        self.uMajorTrainWindow = None  # 专业培养方案窗口
         self.slot_init()
         self.setWindowTitle('学院信息管理')
         self.showCollegeInform()
@@ -21,7 +23,16 @@ class AdminColManaWindow(QMainWindow):
         槽函数初始化
         :return:
         """
-        self.ui.uploadAllButton.clicked.connect(self.uploadCollegeAndMajorInform)
+        self.ui.uploadCollegeMajorButton.clicked.connect(self.uploadCollegeAndMajorInform)
+        self.ui.uploadTrainButton.clicked.connect(self.uploadTrainInform)
+
+    def uploadTrainInform(self):
+        """
+        上传培养方案按钮槽函数
+        :return: None
+        """
+        filePath = QtWidgets.QFileDialog.getOpenFileName(self, '选择文件', './', 'Excel files(*.xlsx , *.xls)')
+        # self.admin.uploadTrainInform(filePath) # TODO: 连接数据库
 
     def uploadCollegeAndMajorInform(self):
         """
@@ -99,6 +110,12 @@ class AdminColManaWindow(QMainWindow):
         collegeID = self.ui.showCollegeResult.currentItem().parent().text(0).split('[')[1].split(']')[0]
         majorName = self.ui.showCollegeResult.currentItem().text(0)
         # data = self.admin.showTrainProgram(collegeID, majorName) # TODO: 连接数据库
+        # 课程号 课程名 学分 专业名 学期
+        # 测试数据
+        header = ['课程号', '课程名', '学分', '专业名', '学期']
+        data = [['1', '高等数学', '5', '计算机科学与技术', '1'], ['2', '线性代数', '4', '计算机科学与技术', '1']]
+        self.uMajorTrainWindow = uMajorTrain.MajorTrainWindow(header, data)
+        self.uMajorTrainWindow.show()
 
     def delMajor(self):
         """
@@ -118,3 +135,13 @@ class AdminColManaWindow(QMainWindow):
         # 获取学院ID
         collegeID = self.ui.showCollegeResult.currentItem().text(0).split('[')[1].split(']')[0]
         # self.admin.delCollege(collegeID) # TODO: 连接数据库
+
+    def closeEvent(self, event):
+        """
+        重写closeEvent函数
+        :param event:
+        :return:
+        """
+        if self.uMajorTrainWindow is not None:
+            self.uMajorTrainWindow.close()
+        event.accept()

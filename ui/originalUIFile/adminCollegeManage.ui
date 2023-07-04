@@ -63,7 +63,7 @@
     </property>
    </column>
   </widget>
-  <widget class="QPushButton" name="uploadAllButton">
+  <widget class="QPushButton" name="uploadCollegeMajorButton">
    <property name="geometry">
     <rect>
      <x>30</x>
@@ -74,6 +74,19 @@
    </property>
    <property name="text">
     <string>导入学院专业</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="uploadTrainButton">
+   <property name="geometry">
+    <rect>
+     <x>600</x>
+     <y>30</y>
+     <width>161</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>导入培养方案</string>
    </property>
   </widget>
  </widget>

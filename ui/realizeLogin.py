@@ -51,8 +51,8 @@ class LoginWindow(QMainWindow):
         # 教师属性： id, name, education, degree, collegeID, college, identify
         user = lteacher.Teacher(2, '李四', '本科', '学士', 1, '计算机学院', 'teacher')
         # [True/False, id/0,'admin'/'student'/'teacher'/'wrong']
-        userInform = [True, 1, 'admin']
-        # userInform = [True, 2, 'student']
+        # userInform = [True, 1, 'admin']
+        userInform = [True, 2, 'student']
         # userInform = [True, 1, 'teacher']
         # userInform = [False, 0, 'wrong']
         if userInform[0]:  # TODO: userInform[0]

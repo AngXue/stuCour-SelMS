@@ -60,7 +60,7 @@ class StuHome(QMainWindow):
         # self.ui.showSearchResult.resizeColumnsToContents()
         # self.ui.showSearchResult.resizeRowsToContents()
         # 设置表格自适应宽度
-        self.ui.showSearchResult.horizontalHeader().setSectionResizeMode(1)
+        self.ui.showSearchResult.horizontalHeader().setSectionResizeMode(resizeMode)
 
     def showCanSelectSubs(self):
         """
@@ -71,7 +71,7 @@ class StuHome(QMainWindow):
         # data数据形式 [[1, 2002, '数据结构', '~11:00', 13, '一教101', 30, 0, 2, '软件工程', '老王', '周三']]
         # 课程号，课程名，学分，上课时间（时），地点，可选人数，已选人数，年级，开课专业，老师姓名，上课时间（天）
         # 测试数据
-        header = ['课程号', '课程名', '学分', '上课时间（时）', '地点', '可选人数', '已选人数', '年级', '开课专业', '老师姓名', '星期']
+        header = ['课程号', '课程名', '学分', '时间', '地点', '可选人数', '已选人数', '年级', '开课专业', '老师姓名', '星期']
         data = [[1, '数据结构', 3, '~11:00', '一教101', 30, 0, 2, '软件工程', '可林', '周三']]
         self.showResult(data, header, 3)
 

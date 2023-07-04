@@ -30,9 +30,12 @@ class Ui_Dialog(object):
         self.showCollegeResult.setGeometry(QtCore.QRect(25, 81, 741, 591))
         self.showCollegeResult.setObjectName("showCollegeResult")
         self.showCollegeResult.headerItem().setText(0, "1")
-        self.uploadAllButton = QtWidgets.QPushButton(Dialog)
-        self.uploadAllButton.setGeometry(QtCore.QRect(30, 30, 161, 41))
-        self.uploadAllButton.setObjectName("uploadAllButton")
+        self.uploadCollegeMajorButton = QtWidgets.QPushButton(Dialog)
+        self.uploadCollegeMajorButton.setGeometry(QtCore.QRect(30, 30, 161, 41))
+        self.uploadCollegeMajorButton.setObjectName("uploadCollegeMajorButton")
+        self.uploadTrainButton = QtWidgets.QPushButton(Dialog)
+        self.uploadTrainButton.setGeometry(QtCore.QRect(600, 30, 161, 41))
+        self.uploadTrainButton.setObjectName("uploadTrainButton")
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -41,4 +44,5 @@ class Ui_Dialog(object):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
         self.collegeTextlabel.setText(_translate("Dialog", "学院管理"))
-        self.uploadAllButton.setText(_translate("Dialog", "导入学院专业"))
+        self.uploadCollegeMajorButton.setText(_translate("Dialog", "导入学院专业"))
+        self.uploadTrainButton.setText(_translate("Dialog", "导入培养方案"))
