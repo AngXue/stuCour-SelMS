@@ -101,7 +101,7 @@ class Student:
         UpDataScore(self.id, selectid, -1)
 
 
-app = Student(10002, '小沐', '软件与物联网工程学院', '软件工程', 1, 'student')
-print(app.choosecourse(2, 'java', '周三', 12))
+# app = Student(10002, '小沐', '软件与物联网工程学院', '软件工程', 1, 'student')
+# print(app.choosecourse(2, 'java', '周三', 12))
 # # print(app.searchcourse("数据"))
 # print(app.withdrawalcourse(2))

@@ -37,7 +37,7 @@ class AdminHomeWindow(QMainWindow):
         self.ui.logOutButton.clicked.connect(self.logOut)
         self.ui.searchUsersInput.returnPressed.connect(self.searchUsers)
         # 设置提示信息
-        self.ui.deleteStartInput.setPlaceholderText('请输入需要搜索的用户的ID或姓名')
+        self.ui.searchUsersInput.setPlaceholderText('请输入需要搜索的用户的ID或姓名')
 
     def manageCollegeInform(self):
         """
