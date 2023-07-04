@@ -89,23 +89,35 @@ def Trainplain(major,grade):
         conn.rollback()
 
 # 按名字查找课程
-def SearchCourse(coursename):
+def SearchCourse(res):
     # 打开数据库连接
     conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")
     # 使用 cursor() 方法创建一个游标对象 cursor
     cursor = conn.cursor()
+    k = []
+    if res[0] >= '0' and res[0] <= '9':
+        res = int(res)
+        sql = "select * from course where CourseId = '%s'" %(res)
 
-    sql = "select * from course where CourseName like '%%%s%%'" %(coursename)
+        try:
+            cursor.execute(sql)
+            results = cursor.fetchall()
+            for i in results:
+                k.append(i)
+            conn.close()
+        except:
+            conn.rollback()
+    else:
+        sql = "select * from course where CourseName LIKE'%%%s%%'" % (res)
+        try:
+            cursor.execute(sql)
+            results = cursor.fetchall()
+            for i in results:
+                k.append(i)
+        except:
+            conn.rollback()
 
-    try:
-        cursor.execute(sql)
-        results = cursor.fetchall()
-        conn.close()
-        return results
-
-    except:
-        conn.rollback()
-
+    return k
 #查询课程
 def QueryCourse(id):
     # 打开数据库连接

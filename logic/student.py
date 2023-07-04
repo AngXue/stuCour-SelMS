@@ -61,7 +61,7 @@ class Student:
         res = SearchCourse(coursename)
         lis = []
         for i in range(len(res)):
-            k = list(res[0])
+            k = list(res[i])
             l = k[4] // 10
             r = k[4] % 10
             k[4] = "%s~%s" % (self.time[l], self.time[r])
@@ -90,6 +90,6 @@ class Student:
             return False
 
 
-app = Student(50001, '软件与物联网工程学院', '软件工程', '软件工程', 2, 'student')
+# app = Student(50001, '软件与物联网工程学院', '软件工程', '软件工程', 2, 'student')
 # print(app.choosecourse(2,'java','周三',13))
-print(app.searchcourse("x"))
+# print(app.searchcourse("数据"))
