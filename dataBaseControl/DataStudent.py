@@ -58,7 +58,7 @@ def electresult(id):
     # 使用 cursor() 方法创建一个游标对象 cursor
     cursor = conn.cursor()
 
-    sql = "select SelectID,CourseID,CourseName,score,CourseTime,CoursePlace,TeacherName from course where SelectID in\
+    sql = "select SelectID,CourseID,CourseName,score,CourseTime,CoursePlace,TeacherName,Time from course where SelectID in\
     (select selectresult.SelectID from selectresult where ID='%d') " % (id)
 
     try:
@@ -95,7 +95,7 @@ def SearchCourse(coursename):
     # 使用 cursor() 方法创建一个游标对象 cursor
     cursor = conn.cursor()
 
-    sql = "select CourseID,CourseName,score,CourseTime,CoursePlace,Num,Selectnum from course where CourseName like '%%%s%%'" %(coursename)
+    sql = "select * from course where CourseName like '%%%s%%'" %(coursename)
 
     try:
         cursor.execute(sql)
@@ -182,6 +182,25 @@ def UpDateCourse(num,selectid):
     except:
         conn.rollback()
 
+
+def CheckTime(weektime,daytime):
+    # 打开数据库连接
+    conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")
+    # 使用 cursor() 方法创建一个游标对象 cursor
+    cursor = conn.cursor()
+
+    sql = "select * from (selectresult,course)  where CourseTime = '%d' and Time='%s' " % (daytime,weektime)
+
+    try:
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        conn.close()
+        if (len(results) == 0):
+            return True
+        else:
+            return False
+    except:
+        conn.rollback()
 
 
 

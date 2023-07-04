@@ -10,7 +10,7 @@ class Student:
         self.college = college
         self.major = major
         self.grade = grade
-        self.identiify = identify
+        self.identify = identify
 
     def selfinfomation(self):
         """
@@ -23,40 +23,40 @@ class Student:
     def selectionresults(self):
         """
         返回学生的选课结果
-        :return:list
-                ((2001, '数据库', 4, 13, '一教101'),)
+        :return:选课编号  课程号，课程名，学分，时间（时），地点，老师姓名，时间（天）
+                [[1, 2002, '数据结构', 4, '8:00~10:00', '一教101', '老王', '周三']]
         """
         res = electresult(self.id)
         lis = []
         for i in range(len(res)):
             k = list(res[0])
-            l = k[3] // 10
-            r = k[3] % 10
-            k[3] = "%s~%s" % (self.time[l], self.time[r])
+            l = k[4] // 10
+            r = k[4] % 10
+            k[4] = "%s~%s" % (self.time[l], self.time[r])
             lis.append(k)
         return lis
 
     def selectplain(self):
         """
         返回学生能选课程
-        :return: 每个课程包括课程号，课程名，学分，上课时间，地点，可选人数，已选人数
-                ((2001, '数据库', 4, 13, '一教101', 30, 0),)
+        :return: 每个包括 选课编号 ，课程号，课程名，学分，上课时间（时），地点，可选人数，已选人数，年级，开课专业，老师姓名，上课时间（天）
+                [[1, 2002, '数据结构', 4, '8:00~10:00', '一教101', 30, 0, 2, '软件工程', '老王', '周三']]
         """
         res = Trainplain(self.major, self.grade)
         lis = []
         for i in range(len(res)):
             k = list(res[0])
-            l = k[3] // 10
-            r = k[3] % 10
-            k[3] = "%s~%s" % (self.time[l], self.time[r])
+            l = k[4] // 10
+            r = k[4] % 10
+            k[4] = "%s~%s" % (self.time[l], self.time[r])
             lis.append(k)
         return lis
 
     def searchcourse(self, coursename):
         """
         :param coursename: 搜索的课程名，不需要全名
-        :return: 返回搜索到的课程
-                ((2001, '数据库', 4, 13, '一教101', 30, 0),)
+        :return: 每个包括 选课编号 ，课程号，课程名，学分，上课时间（时），地点，可选人数，已选人数，年级，开课专业，老师姓名，上课时间（天）
+                [[1, 2002, '数据结构', '~11:00', 13, '一教101', 30, 0, 2, '软件工程', '老王', '周三']]
         """
         res = SearchCourse(coursename)
         lis = []
@@ -68,9 +68,17 @@ class Student:
             lis.append(k)
         return lis
 
-    def choosecourse(self, SelectId, Name):
+    def choosecourse(self, SelectId, Name,Weektime,Daytime):
+        '''
 
-        if (CheckCourse(Name)):
+        :param SelectId: 选课编号
+        :param Name: 课程名
+        :param Weektime: 上课的天 如：周三
+        :param daytime: 时间 如13
+        :return: 选课成功为true 失败为false
+        '''
+
+        if (CheckCourse(Name) and CheckTime(Weektime,Daytime)):
             num = QueryCourse(SelectId)
             if (num > 0):
                 AddCourse(self.id, SelectId)
@@ -83,4 +91,4 @@ class Student:
 
 
 # app = Student(50001, '软件与物联网工程学院', '软件工程', '软件工程', 2, 'student')
-# print(app.choosecourse(1, '数据库'))
+# print(app.choosecourse(2,'java','周三',13))
