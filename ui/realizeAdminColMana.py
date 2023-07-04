@@ -95,7 +95,10 @@ class AdminColManaWindow(QMainWindow):
         查看培养方案
         :return:
         """
-        pass
+        # 获取专业所属学院ID和专业名称
+        collegeID = self.ui.showCollegeResult.currentItem().parent().text(0).split('[')[1].split(']')[0]
+        majorName = self.ui.showCollegeResult.currentItem().text(0)
+        # data = self.admin.showTrainProgram(collegeID, majorName) # TODO: 连接数据库
 
     def delMajor(self):
         """
