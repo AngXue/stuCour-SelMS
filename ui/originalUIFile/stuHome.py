@@ -12,15 +12,6 @@ from PyQt5 import QtCore, QtWidgets
 
 
 class Ui_Dialog(object):
-    def __init__(self, MainWind):
-        self.setupUi(MainWind)
-        self.slot_init(MainWind)  # 设置槽函数
-
-    def slot_init(self, Dialog):
-        self.logOutButton.clicked.connect(Dialog.logOut)  # type: ignore
-        self.selfInformButton.clicked.connect(Dialog.getSelfInform)  # type: ignore
-        self.selectedButton.clicked.connect(Dialog.getSelectedSubs)  # type: ignore
-        self.searchSubsButton.clicked.connect(Dialog.searchSubs)  # type: ignore
 
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")

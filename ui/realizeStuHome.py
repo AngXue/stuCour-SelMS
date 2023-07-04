@@ -1,18 +1,29 @@
-import sys
+from PyQt5.QtWidgets import QMainWindow
 
-from PyQt5.QtWidgets import QMainWindow,QApplication
-
-import ui.realizeLogin as uLogin
 import originalUIFile.stuHome as uStuhome
+import ui.realizeLogin as uLogin
 
 
 class StuHome(QMainWindow):
     def __init__(self, student, parent=None):
         super(QMainWindow, self).__init__(parent)
-        self.ui = uStuhome.Ui_Dialog(self)
+        self.ui = uStuhome.Ui_Dialog()
+        self.ui.setupUi(self)
         self.setWindowTitle('学生主界面')
         self.student = student  # 学生对象
+        self.slot_init()
+        # 用户一进入主界面就显示可选课程
         # self.ui.showSearchResult
+
+    def slot_init(self):
+        """
+        槽函数初始化
+        :return:
+        """
+        self.ui.logOutButton.clicked.connect(self.logOut)
+        self.ui.selfInformButton.clicked.connect(self.getSelfInform)
+        self.ui.selectedButton.clicked.connect(self.getSelectedSubs)
+        self.ui.searchSubsButton.clicked.connect(self.searchSubs)
 
     def logOut(self):
         """
@@ -43,19 +54,3 @@ class StuHome(QMainWindow):
         :return: None
         """
         pass
-
-
-def showStuHome(student):
-    """
-    显示学生主界面
-    :param student: 学生对象
-    :return: None
-    """
-    uStuHome = StuHome(student)
-    uStuHome.show()
-
-
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    showStuHome(None)
-    sys.exit(app.exec_())

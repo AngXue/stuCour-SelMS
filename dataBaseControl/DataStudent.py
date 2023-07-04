@@ -3,8 +3,7 @@ import random
 from faker import Faker
 
 
-
-#查帐号
+# 查帐号
 def quiryaccount(id,password):
     # 打开数据库连接
     conn = pymysql.connect(host='localhost',port=3306,user='root',passwd='123456',charset='utf8',db="test")
@@ -29,7 +28,8 @@ def quiryaccount(id,password):
         conn.rollback()
     conn.close()
 
-#查选课结果
+
+# 查选课结果
 def electresult(id):
     # 打开数据库连接
     conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")
@@ -49,7 +49,8 @@ def electresult(id):
 
     conn.close()
 
-#查找能选课程
+
+# 查找能选课程
 def Trainplain(major,grade):
     # 打开数据库连接
     conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")
@@ -69,7 +70,8 @@ def Trainplain(major,grade):
 
     conn.close()
 
-#按名字查找课程
+
+# 按名字查找课程
 def SearchCourse(coursename):
     # 打开数据库连接
     conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")

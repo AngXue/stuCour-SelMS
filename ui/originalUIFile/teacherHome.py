@@ -12,14 +12,6 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_Dialog(object):
-    def __init__(self, Dialog):
-        self.setupUi(Dialog)
-        self.slot_init(Dialog)
-
-    def slot_init(self, Dialog):
-        self.feedbackButton.clicked.connect(Dialog.test)  # type: ignore
-        self.logOutButton.clicked.connect(Dialog.logOut)  # type: ignore
-        self.selfInfomButton.clicked.connect(Dialog.test)  # type: ignore
 
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
@@ -46,17 +38,17 @@ class Ui_Dialog(object):
         self.logOutButton.setFont(font)
         self.logOutButton.setStyleSheet("font: 14pt \"Agency FB\";")
         self.logOutButton.setObjectName("logOutButton")
-        self.selfInfomButton = QtWidgets.QPushButton(Dialog)
-        self.selfInfomButton.setGeometry(QtCore.QRect(450, 30, 141, 41))
+        self.selfInformButton = QtWidgets.QPushButton(Dialog)
+        self.selfInformButton.setGeometry(QtCore.QRect(450, 30, 141, 41))
         font = QtGui.QFont()
         font.setFamily("Agency FB")
         font.setPointSize(14)
         font.setBold(False)
         font.setItalic(False)
         font.setWeight(50)
-        self.selfInfomButton.setFont(font)
-        self.selfInfomButton.setStyleSheet("font: 14pt \"Agency FB\";")
-        self.selfInfomButton.setObjectName("selfInfomButton")
+        self.selfInformButton.setFont(font)
+        self.selfInformButton.setStyleSheet("font: 14pt \"Agency FB\";")
+        self.selfInformButton.setObjectName("selfInfomrButton")
         self.showTeacherSubsResult = QtWidgets.QListView(Dialog)
         self.showTeacherSubsResult.setGeometry(QtCore.QRect(70, 160, 711, 431))
         self.showTeacherSubsResult.setObjectName("showTeacherSubsResult")
@@ -72,6 +64,6 @@ class Ui_Dialog(object):
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
         self.feedbackButton.setText(_translate("Dialog", "反馈"))
         self.logOutButton.setText(_translate("Dialog", "登出"))
-        self.selfInfomButton.setText(_translate("Dialog", "个人信息"))
+        self.selfInformButton.setText(_translate("Dialog", "个人信息"))
         self.teacherSubsPrompt.setText(_translate("Dialog",
                                                   "<html><head/><body><p><span style=\" font-size:14pt;\">任课信息：</span></p></body></html>"))

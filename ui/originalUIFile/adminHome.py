@@ -13,20 +13,6 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_Dialog(object):
-    def __init__(self, Dialog):
-        self.setupUi(Dialog)
-        self.slot_init(Dialog)
-
-    def slot_init(self, Dialog):
-        self.manageCollegeInformButton.clicked.connect(Dialog.test)  # type: ignore
-        self.deleteUsersButton.clicked.connect(Dialog.test)  # type: ignore
-        self.manageSubsInformButton.clicked.connect(Dialog.test)  # type: ignore
-        self.startSelectSubsButton.clicked.connect(Dialog.test)  # type: ignore
-        self.searchUsersButton.clicked.connect(Dialog.test)  # type: ignore
-        self.stopSelectSubsButton.clicked.connect(Dialog.test)  # type: ignore
-        self.uploadStusInformButton.clicked.connect(Dialog.test)  # type: ignore
-        self.uploadTeachersInformButton.clicked.connect(Dialog.test)  # type: ignore
-        self.logOutButton.clicked.connect(Dialog.logOut)  # type: ignore
 
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
