@@ -65,7 +65,7 @@
     <string>修改课程任课老师</string>
    </property>
   </widget>
-  <widget class="QTableView" name="courseListLabel">
+  <widget class="QTableWidget" name="showTeachResult">
    <property name="geometry">
     <rect>
      <x>80</x>
@@ -75,10 +75,10 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(104, 168, 231);</string>
+    <string notr="true"/>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>80</x>

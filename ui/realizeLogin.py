@@ -5,6 +5,7 @@ import ui.realizeAdminHome
 import ui.realizeStuHome
 import ui.realizeTeacherHome
 import logic.student as lstudent
+import logic.teacher as lteacher
 
 
 class LoginWindow(QMainWindow):
@@ -40,17 +41,18 @@ class LoginWindow(QMainWindow):
         登录按钮槽函数
         :return: None
         """
-
         # 从输入框获取用户名和密码
         userName = self.ui.loginNameInput.text()
         userPasswd = self.ui.loginPasswdInput.text()
         # userInform = llogin.login(userName, userPasswd) TODO: 调用登录函数, 返回登录信息
         # user = gen(ID, identity) TODO: 调用生成对象函数, 返回对象
-        # id, name, college, major, grade
-        user = lstudent.Student(1, '张三', '计算机学院', '计算机科学与技术', 2018)
+        # id, name, college, major, grade, identity
+        # user = lstudent.Student(1, '张三', '计算机学院', '计算机科学与技术', 2018, 'student')
+        # 教师属性： id, name, education, degree, collegeID, college, identify
+        user = lteacher.Teacher(2, '李四', '本科', '学士', 1, '计算机学院', 'teacher')
         # [True/False, id/0,'admin'/'student'/'teacher'/'wrong']
-        # userInform = [True, 1, 'admin']
-        userInform = [True, 2, 'student']
+        userInform = [True, 1, 'admin']
+        # userInform = [True, 2, 'student']
         # userInform = [True, 1, 'teacher']
         # userInform = [False, 0, 'wrong']
         if userInform[0]:  # TODO: userInform[0]

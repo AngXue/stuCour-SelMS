@@ -24,25 +24,25 @@ class Ui_Dialog(object):
         font.setPointSize(15)
         self.addCollegeButton.setFont(font)
         self.addCollegeButton.setStyleSheet("background-color: rgb(0, 170, 255);\n"
-"color: rgb(255, 255, 255);")
+                                            "color: rgb(255, 255, 255);")
         self.addCollegeButton.setObjectName("addCollegeButton")
-        self.addMajoyButton = QtWidgets.QPushButton(Dialog)
-        self.addMajoyButton.setGeometry(QtCore.QRect(320, 200, 150, 150))
+        self.addMajorButton = QtWidgets.QPushButton(Dialog)
+        self.addMajorButton.setGeometry(QtCore.QRect(320, 200, 150, 150))
         font = QtGui.QFont()
         font.setPointSize(15)
-        self.addMajoyButton.setFont(font)
-        self.addMajoyButton.setStyleSheet("background-color: rgb(0, 170, 255);\n"
-"color: rgb(255, 255, 255);")
-        self.addMajoyButton.setObjectName("addMajoyButton")
-        self.delMajoyButton = QtWidgets.QPushButton(Dialog)
-        self.delMajoyButton.setGeometry(QtCore.QRect(320, 370, 150, 150))
-        self.delMajoyButton.setStyleSheet("background-color: rgb(0, 170, 255);\n"
-"color: rgb(255, 255, 255);")
-        self.delMajoyButton.setObjectName("delMajoyButton")
+        self.addMajorButton.setFont(font)
+        self.addMajorButton.setStyleSheet("background-color: rgb(0, 170, 255);\n"
+                                          "color: rgb(255, 255, 255);")
+        self.addMajorButton.setObjectName("addMajorButton")
+        self.delMajorButton = QtWidgets.QPushButton(Dialog)
+        self.delMajorButton.setGeometry(QtCore.QRect(320, 370, 150, 150))
+        self.delMajorButton.setStyleSheet("background-color: rgb(0, 170, 255);\n"
+                                          "color: rgb(255, 255, 255);")
+        self.delMajorButton.setObjectName("delMajorButton")
         self.delCollegeButton = QtWidgets.QPushButton(Dialog)
         self.delCollegeButton.setGeometry(QtCore.QRect(150, 370, 150, 150))
         self.delCollegeButton.setStyleSheet("background-color: rgb(0, 170, 255);\n"
-"color: rgb(255, 255, 255);")
+                                            "color: rgb(255, 255, 255);")
         self.delCollegeButton.setObjectName("delCollegeButton")
         self.addTrainProgramButton = QtWidgets.QPushButton(Dialog)
         self.addTrainProgramButton.setGeometry(QtCore.QRect(500, 200, 150, 150))
@@ -50,7 +50,7 @@ class Ui_Dialog(object):
         font.setPointSize(15)
         self.addTrainProgramButton.setFont(font)
         self.addTrainProgramButton.setStyleSheet("background-color: rgb(0, 170, 255);\n"
-"color: rgb(255, 255, 255);")
+                                                 "color: rgb(255, 255, 255);")
         self.addTrainProgramButton.setObjectName("addTrainProgramButton")
         self.delTrainProgramButton = QtWidgets.QPushButton(Dialog)
         self.delTrainProgramButton.setGeometry(QtCore.QRect(500, 370, 150, 150))
@@ -58,7 +58,7 @@ class Ui_Dialog(object):
         font.setPointSize(15)
         self.delTrainProgramButton.setFont(font)
         self.delTrainProgramButton.setStyleSheet("background-color: rgb(0, 170, 255);\n"
-"color: rgb(255, 255, 255);")
+                                                 "color: rgb(255, 255, 255);")
         self.delTrainProgramButton.setObjectName("delTrainProgramButton")
         self.collegeTextlabel = QtWidgets.QLabel(Dialog)
         self.collegeTextlabel.setGeometry(QtCore.QRect(350, 100, 121, 71))
@@ -74,8 +74,8 @@ class Ui_Dialog(object):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
         self.addCollegeButton.setText(_translate("Dialog", "添加学院"))
-        self.addMajoyButton.setText(_translate("Dialog", "添加专业"))
-        self.delMajoyButton.setText(_translate("Dialog", "删除专业"))
+        self.addMajorButton.setText(_translate("Dialog", "添加专业"))
+        self.delMajorButton.setText(_translate("Dialog", "删除专业"))
         self.delCollegeButton.setText(_translate("Dialog", "删除学院"))
         self.addTrainProgramButton.setText(_translate("Dialog", "添加培养方案"))
         self.delTrainProgramButton.setText(_translate("Dialog", "删除培养方案"))

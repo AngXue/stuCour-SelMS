@@ -63,7 +63,7 @@
     <string>登出</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="selfInfomButton">
+  <widget class="QPushButton" name="selfInformButton">
    <property name="geometry">
     <rect>
      <x>450</x>
@@ -88,7 +88,7 @@
     <string>个人信息</string>
    </property>
   </widget>
-  <widget class="QListView" name="showTeacherSubsResult">
+  <widget class="QTableWidget" name="showTeacherSubsResult">
    <property name="geometry">
     <rect>
      <x>70</x>
@@ -147,7 +147,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>selfInfomButton</sender>
+   <sender>selfInformButton</sender>
    <signal>clicked()</signal>
    <receiver>Dialog</receiver>
    <slot>accept()</slot>

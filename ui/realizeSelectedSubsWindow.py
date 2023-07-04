@@ -35,11 +35,12 @@ class SelectedSubsWindow(QMainWindow):
         显示搜索结果
         :return: None
         """
-        # 课程号，课程名，学分，上课时间，上课地点
-        # 数据 [[2001, '数据库', 4, '8:00~10:00', '一教101'], [2001, '数据库', 4, '8:00~10:00', '一教101']] # TODO: 修正格式
-        # data = self.student.get_selected_subs()  TODO: 从数据库中获取数据
+        # 选课编号  课程号，课程名，学分，时间（时），地点，老师姓名，时间（天）
+        # [[1, 2002, '数据结构', 4, '8:00~10:00', '一教101', '老王', '周三']]
+        # data = self.student.selectionresults()  TODO: 从数据库中获取数据
         # 测试数据
-        data = [[2001, '数据库', 4, '8:00~10:00', '一教101'], [2001, '数据库', 4, '8:00~10:00', '一教101']]
+        data = [[1, 2002, '数据结构', 4, '8:00~10:00', '一教101', '老王', '周三'],
+                [2, 2003, '操作系统', 4, '10:00~12:00', '一教102', '老李', '周四']]
         # 显示在表格中
         self.ui.showSelectedSubs.setRowCount(len(data))
         self.ui.showSelectedSubs.setColumnCount(len(data[0]))
@@ -47,15 +48,17 @@ class SelectedSubsWindow(QMainWindow):
             for j in range(len(data[i])):
                 self.ui.showSelectedSubs.setItem(i, j, QtWidgets.QTableWidgetItem(str(data[i][j])))
         # 设置表头
-        self.ui.showSelectedSubs.setHorizontalHeaderLabels(['课程号', '课程名', '学分', '上课时间', '上课地点'])
-        # 设置表格自适应大小
-        # self.ui.showSelectedSubs.resizeColumnsToContents()
-        # self.ui.showSelectedSubs.resizeRowsToContents()
+        self.ui.showSelectedSubs.setHorizontalHeaderLabels(
+            ['选课编号', '课程号', '课程名', '学分', '时间', '地点', '老师姓名', '星期'])
         # 设置表格不可编辑
         self.ui.showSelectedSubs.setEditTriggers(self.ui.showSelectedSubs.NoEditTriggers)
         # 设置右键菜单，可以退选课程
         self.ui.showSelectedSubs.setContextMenuPolicy(3)
         self.ui.showSelectedSubs.customContextMenuRequested.connect(self.rightMenuShow)
+        # 设置表格自适应大小
+        self.ui.showSelectedSubs.horizontalHeader().setSectionResizeMode(1)
+        # 不显示行号
+        # self.ui.showSelectedSubs.verticalHeader().setVisible(False)
 
     def rightMenuShow(self):
         """
