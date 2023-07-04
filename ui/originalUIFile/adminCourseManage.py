@@ -15,6 +15,8 @@ class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.resize(906, 691)
+        Dialog.setMinimumSize(QtCore.QSize(906, 691))
+        Dialog.setMaximumSize(QtCore.QSize(906, 691))
         self.uploadCourseButton = QtWidgets.QPushButton(Dialog)
         self.uploadCourseButton.setGeometry(QtCore.QRect(740, 40, 101, 41))
         self.uploadCourseButton.setObjectName("uploadCourseButton")
