@@ -25,7 +25,15 @@ class Student:
         :return:list
                 ((2001, '数据库', 4, 13, '一教101'),)
         """
-        return electresult(self.id)
+        res = electresult(self.id)
+        lis = []
+        for i in range(len(res)):
+            k = list(res[0])
+            l = k[3] // 10
+            r = k[3] % 10
+            k[3] = "%s~%s" % (self.time[l], self.time[r])
+            lis.append(k)
+        return lis
 
     def selectplain(self):
         """
@@ -59,5 +67,5 @@ class Student:
             lis.append(k)
         return lis
 
-# app = Student(50001, '软件与物联网工程学院', '软件工程', '软件工程', 2)
-# print(app.searchcourse('据'))
+app = Student(50001, '软件与物联网工程学院', '软件工程', '软件工程', 2)
+print(app.selectionresults())

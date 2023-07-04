@@ -18,15 +18,18 @@ def quiryaccount(id,password):
             return [False,0,'wrong']
         else:
             if(id==10001):
+                conn.close()
                 return [True, id,'admin']
             elif(id>2000):
+                conn.close()
                 return [True, id,'student']
             else:
+                conn.close()
                 return [True, id, 'teacher']
 
     except:
         conn.rollback()
-    conn.close()
+
 
 
 # 查选课结果
@@ -36,18 +39,18 @@ def electresult(id):
     # 使用 cursor() 方法创建一个游标对象 cursor
     cursor = conn.cursor()
 
-    sql = "select CourseID,CourseName,score,CourseTime,CoursePlace from course where SelectID=\
+    sql = "select CourseID,CourseName,score,CourseTime,CoursePlace from course where SelectID in\
     (select selectresult.SelectID from selectresult where ID='%d') " % (id)
 
     try:
         cursor.execute(sql)
         results = cursor.fetchall()
-
+        conn.close()
         return results
     except:
         conn.rollback()
 
-    conn.close()
+
 
 
 # 查找能选课程
@@ -63,12 +66,12 @@ def Trainplain(major,grade):
     try:
         cursor.execute(sql)
         results = cursor.fetchall()
+        conn.close()
         return results
 
     except:
         conn.rollback()
 
-    conn.close()
 
 
 # 按名字查找课程
@@ -83,9 +86,10 @@ def SearchCourse(coursename):
     try:
         cursor.execute(sql)
         results = cursor.fetchall()
+        conn.close()
         return results
 
     except:
         conn.rollback()
 
-    conn.close()
+
