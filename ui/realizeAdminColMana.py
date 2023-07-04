@@ -41,4 +41,3 @@ class AdminColManaWindow(QMainWindow):
 
     def delTrainProgram(self):
         pass
-
