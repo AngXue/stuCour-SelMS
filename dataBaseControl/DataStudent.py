@@ -125,13 +125,15 @@ def QueryCourse(id):
     # 使用 cursor() 方法创建一个游标对象 cursor
     cursor = conn.cursor()
 
-    sql = "select Num from course where SelectID = '%d'" % (id)
+    sql = "select Num,Selectnum from course where SelectID = '%d'" % (id)
 
     try:
         cursor.execute(sql)
         results = cursor.fetchall()
         conn.close()
-        k=results[0][0]
+        k=[]
+        k.append(results[0][0])
+        k.append(results[0][1])
         return k
 
     except:
@@ -156,22 +158,22 @@ def AddCourse(id,selectid):
         conn.rollback()
 
 #是否已选择课程
-def CheckCourse(name):
+def CheckCourse(name,id):
     # 打开数据库连接
     conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")
     # 使用 cursor() 方法创建一个游标对象 cursor
     cursor = conn.cursor()
 
-    sql = "select * from (selectresult,course)  where CourseName = '%s'" % (name)
+    sql = "select * from (selectresult,course)  where CourseName = '%s' and ID='%d'" % (name,id)
 
     try:
         cursor.execute(sql)
         results = cursor.fetchall()
         conn.close()
         if(len(results)==0):
-            return False
-        else:
             return True
+        else:
+            return False
     except:
         conn.rollback()
 
@@ -195,18 +197,19 @@ def UpDateCourse(num,selectid):
         conn.rollback()
 
 
-def CheckTime(weektime,daytime):
+def CheckTime(weektime,daytime,id):
     '''
     检查学生时间是否冲突
     :param weektime: 周三
     :param daytime:  13
+    :param id:  选课人学号
     :return: 不冲突 true, 冲突为false
     '''
     conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")
     # 使用 cursor() 方法创建一个游标对象 cursor
     cursor = conn.cursor()
 
-    sql = "select * from (selectresult,course)  where CourseTime = '%d' and Time='%s' " % (daytime,weektime)
+    sql = "select * from (selectresult,course)  where CourseTime = '%d' and Time='%s' and ID='%d' " % (daytime,weektime,id)
 
     try:
         cursor.execute(sql)
@@ -237,7 +240,6 @@ def CheckScore(id,selectid):
     try:
         cursor.execute(sql)
         results = cursor.fetchall()
-        conn.close()
         score1+=results[0][3]
     except:
         conn.rollback()
@@ -247,21 +249,22 @@ def CheckScore(id,selectid):
     try:
         cursor.execute(sql)
         results = cursor.fetchall()
-        sum=results[0][2]
-        score2+=results[0][3]
+        sum=results[0][1]
+        score2+=results[0][2]
     except:
         conn.rollback()
 
     if(sum>=score1+score2):
-        sql = "UPDATE studentscore  SET score = '%d' WHERE D = '%d' " % (score1, score2)
+        sql = "UPDATE studentscore  SET score = '%d' WHERE ID = '%d' " % (score1, score2)
         cursor.execute(sql)
         conn.commit()
+        conn.close()
         return True
     else:
         return False
 
 
-#推选课程
+#撤销课程
 def WithdrawalCourse(id,selectID):
     conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")
     # 使用 cursor() 方法创建一个游标对象 cursor
@@ -293,6 +296,40 @@ def WithdrawalCourse(id,selectID):
 
     conn.close()
 
+#跟新学分
+def UpDataScore(id,selectid,flag):
+    conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")
+    # 使用 cursor() 方法创建一个游标对象 cursor
+    cursor = conn.cursor()
+
+    sql = "select score from course where SelectID = '%d'  " % (selectid)
+    score1 = 0
+    score2 = 0
+    try:
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        score1 += results[0][0]
+    except:
+        conn.rollback()
+
+    sql = "select score from studentscore where ID = '%d'  " % (id)
+    try:
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        score2 += results[0][0]
+    except:
+        conn.rollback()
+
+
+
+    sql = "UPDATE studentscore  SET score = '%d' WHERE ID = '%d' " % (score2 + flag*score1, id)
+    try:
+        cursor.execute(sql)
+        conn.commit()
+    except:
+        conn.rollback()
+
+    conn.close()
 
 
 

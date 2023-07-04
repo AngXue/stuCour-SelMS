@@ -68,7 +68,7 @@ class Student:
             lis.append(k)
         return lis
 
-    def choosecourse(self, SelectId, Name,Weektime,Daytime):
+    def choosecourse(self, SelectId, Name, Weektime, Daytime):
         '''
 
         :param SelectId: 选课编号
@@ -78,11 +78,12 @@ class Student:
         :return: 选课成功为true 失败为false
         '''
 
-        if (CheckCourse(Name) and CheckTime(Weektime,Daytime) and CheckScore(self.id,SelectId)):
+        if (CheckCourse(Name,self.id) and CheckTime(Weektime, Daytime,self.id) and CheckScore(self.id, SelectId)):
             num = QueryCourse(SelectId)
-            if (num > 0):
+            if (num[0] >= num[1]):
                 AddCourse(self.id, SelectId)
-                UpDateCourse(num - 1, SelectId)
+                UpDateCourse(num[1] + 1, SelectId)
+                UpDataScore(self.id,SelectId,1)
                 return True
             else:
                 return False
@@ -90,20 +91,17 @@ class Student:
             return False
 
     # 退课
-    def withdrawalcourse(self,selectid):
+    def withdrawalcourse(self, selectid):
         '''
         推选课程
         :param selectid: 推选的选课号
         :return:
         '''
-        WithdrawalCourse(self.id,selectid)
+        WithdrawalCourse(self.id, selectid)
+        UpDataScore(self.id, selectid, -1)
 
 
-
-
-
-
-# app = Student(50001, '杰杰','软件与物联网工程学院', '软件工程', 2, 'student')
-# # print(app.choosecourse(2,'java','周三',13))
+app = Student(10002, '小沐', '软件与物联网工程学院', '软件工程', 1, 'student')
+print(app.choosecourse(2, 'java', '周三', 12))
 # # print(app.searchcourse("数据"))
-# print(app.withdrawalcourse(3))
+# print(app.withdrawalcourse(2))

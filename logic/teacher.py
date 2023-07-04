@@ -42,5 +42,5 @@ class Teacher:
             lis.append(k)
         return lis
 
-# app=Teacher(1002,'老王','硕士研究生','博士学位',101,'软件与物联网工程学院','teacher')
-# print(app.searchteaching())
+app=Teacher(1002,'老王','硕士研究生','博士学位',101,'软件与物联网工程学院','teacher')
+print(app.feedback('你好，我要换课'))

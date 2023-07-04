@@ -103,6 +103,6 @@ class Admin:
         return self.flag
 
 #
-# app = Admin()
-# #print(app.uploadstudent("Student.xlsx"))
-# print(app.uploadteacher("Teacher.xlsx"))
+app = Admin()
+print(app.uploadstudent("Student.xlsx"))
+#print(app.uploadteacher("Teacher.xlsx"))
