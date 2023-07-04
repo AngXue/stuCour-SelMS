@@ -4,13 +4,13 @@ from dataBaseControl.DataStudent import *
 class Student:
     time = ["", "8:00", "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"]
 
-    def __init__(self, id, name, college, major, grade,identify):
+    def __init__(self, id, name, college, major, grade, identify):
         self.id = id
         self.name = name
         self.college = college
         self.major = major
         self.grade = grade
-        self.identiify=identify
+        self.identiify = identify
 
     def selfinfomation(self):
         """
@@ -68,5 +68,19 @@ class Student:
             lis.append(k)
         return lis
 
-# app = Student(50001, '软件与物联网工程学院', '软件工程', '软件工程', 2)
-# print(app.selectionresults())
+    def choosecourse(self, SelectId, Name):
+
+        if (CheckCourse(Name)):
+            num = QueryCourse(SelectId)
+            if (num > 0):
+                AddCourse(self.id, SelectId)
+                UpDateCourse(num - 1, SelectId)
+                return True
+            else:
+                return False
+        else:
+            return False
+
+
+# app = Student(50001, '软件与物联网工程学院', '软件工程', '软件工程', 2, 'student')
+# print(app.choosecourse(1, '数据库'))
