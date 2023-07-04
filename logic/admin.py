@@ -123,12 +123,23 @@ class Admin:
         UploadCourse(res)
         ArrangeCourse(res)
 
+    def showTrainProgram(self,collegeid,majorname):
+        return ShowTrainProgram(majorname)
 
+    def delMajor(self,collegeid,majorname):
+        DelMAjor(majorname)
 
+    def delCollege(self,collegeid):
+        DelCollege(collegeid)
 
 app = Admin()
-print(app.uploadstudent("Student.xlsx"))
-print(app.uploadcourse("软件工程.xlsx"))
-#print(app.uploadteacher("Teacher.xlsx"))
+# print(app.uploadstudent("Student.xlsx"))
+#print(app.uploadcourse("软件工程.xlsx"))
+# print(app.uploadteacher("Teacher.xlsx"))
+# print(app.delMajor(1,'软件工程'))
+# print(app.delCollege(1))
+#app.uploadcollege("College.xlsx")
+
+app.delCollege(101)
 
 

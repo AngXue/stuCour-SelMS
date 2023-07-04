@@ -1,4 +1,7 @@
 import pymysql
+import pymysql
+import random
+sum = 0
 
 
 def ViewMessege():
@@ -14,6 +17,7 @@ def ViewMessege():
         return results
     except:
         conn.rollback()
+
 
 def Querymember():
     # 打开数据库连接
@@ -49,7 +53,6 @@ def Querymember():
 
 
 def Queryinfomation(res):
-
     conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")
     cursor = conn.cursor()
     k = []
@@ -99,13 +102,12 @@ def Queryinfomation(res):
     return k
 
 
-def DeleteFomation(idl,idr):
-
+def DeleteFomation(idl, idr):
     conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")
     cursor = conn.cursor()
 
-    i=idl
-    while(i<=idr):
+    i = idl
+    while (i <= idr):
         sql = "delete  from teacherlist where ID='%d'" % (i)
         try:
             cursor.execute(sql)
@@ -139,7 +141,8 @@ def UploadTeacher(lis):
     cursor = conn.cursor()
 
     for i in lis:
-        sql = "insert into  teacherlist values('%d','%s','%s','%s','%d','%s','%s')" % (i[0],i[1],i[2],i[3],i[4],i[5],i[6])
+        sql = "insert into  teacherlist values('%d','%s','%s','%s','%d','%s','%s','%s')" % (
+        i[0], i[1], i[2], i[3], i[4], i[5], i[6],i[7])
         try:
             cursor.execute(sql)
             conn.commit()
@@ -154,13 +157,14 @@ def UploadTeacher(lis):
             conn.rollback()
 
     conn.close()
+
 
 def UploadStudent(lis):
     conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")
     cursor = conn.cursor()
 
     for i in lis:
-        sql = "insert into  studentlist values('%d','%s','%s','%s','%d','%s')" % (i[0], i[1], i[2], i[3], i[4],i[5])
+        sql = "insert into  studentlist values('%d','%s','%s','%s','%d','%s')" % (i[0], i[1], i[2], i[3], i[4], i[5])
         try:
             cursor.execute(sql)
             conn.commit()
@@ -175,7 +179,6 @@ def UploadStudent(lis):
             conn.rollback()
 
     conn.close()
-
 
 
 def UploadCollege(lis):
@@ -192,35 +195,12 @@ def UploadCollege(lis):
     conn.close()
 
 
-import pymysql
-import random
-
-sum=0
-
-def ViewMessege():
-    # 打开数据库连接
-
-    cursor = conn.cursor()
-
-    for i in lis:
-        sql = "insert into  teacherlist values('%d','%s','%s','%s','%d','%s','%s')" % (i[0],i[1],i[2],i[3],i[4],i[5],i[6])
-        sql = "insert into  teacherlist values('%d','%s','%s','%s','%d','%s','%s','%s')" % (i[0],i[1],i[2],i[3],i[4],i[5],i[6],i[7])
-        try:
-            cursor.execute(sql)
-            conn.commit()
-
-        except:
-            conn.rollback()
-    conn.close()
-
-
-
 def UploadCourse(res):
     conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")
     cursor = conn.cursor()
 
     for i in res:
-        sql = "insert into  trainingplan values('%d','%s','%d','%s','%d')" % (i[0], i[1], i[2], i[3],i[4])
+        sql = "insert into  trainingplan values('%d','%s','%d','%s','%d')" % (i[0], i[1], i[2], i[3], i[4])
         try:
             cursor.execute(sql)
             conn.commit()
@@ -234,7 +214,7 @@ def ArrangeCourse(res):
     cursor = conn.cursor()
 
     # sql = "select  Name,Major from teacherlist "
-    teachername=[]
+    teachername = []
     # kkk=[]
     # try:
     #     cursor.execute(sql)
@@ -244,19 +224,18 @@ def ArrangeCourse(res):
     # except:
     #     conn.rollback()
     for i in res:
-        sql = "select  Name from teacherlist where Major='%s'" %(i[3])
+        sql = "select  Name from teacherlist where Major='%s'" % (i[3])
         kkk = []
         try:
             cursor.execute(sql)
-            results=cursor.fetchall()
+            results = cursor.fetchall()
             for j in results:
                 kkk.append(j[0])
         except:
             conn.rollback()
         teachername.append(kkk)
 
-
-    #print(teachername)
+    # print(teachername)
     sql = " select  * from  classroom "
     Classroom = []
     try:
@@ -267,28 +246,156 @@ def ArrangeCourse(res):
     except:
         conn.rollback()
 
-    temp=[12,13,14,24,15,35,25,68,79,69]
-    roomlen=len(Classroom)
-    Week=['周一','周二','周三','周四','周五']
-    cnt=-1
+    temp = [12, 13, 14, 24, 15, 35, 25, 68, 79, 69]
+    roomlen = len(Classroom)
+    Week = ['周一', '周二', '周三', '周四', '周五']
+    cnt = -1
     for i in res:
         global sum
-        sum+=1
-        cnt+=1
+        sum += 1
+        cnt += 1
 
-        TN=teachername[cnt][random.randint(0,len(teachername[cnt])-1)]
-        TP=temp[random.randint(0, 9)]
-        CR=Classroom[random.randint(0,roomlen-1)]
-        WK=Week[random.randint(0,4)]
+        TN = teachername[cnt][random.randint(0, len(teachername[cnt]) - 1)]
+
+
+
+        TP = temp[random.randint(0, 9)]
+        CR = Classroom[random.randint(0, roomlen - 1)]
+        WK = Week[random.randint(0, 4)]
         sql = "insert  into  course \
-        values('%d','%d','%s','%d','%d','%s','%d','%d','%d','%s','%s','%s')" % (sum,i[0], i[1], i[2],TP,\
-        CR,10,0,i[4]//2,i[3],TN,WK)
+        values('%d','%d','%s','%d','%d','%s','%d','%d','%d','%s','%s','%s')" % (sum, i[0], i[1], i[2], TP, \
+                                                                                CR, 10, 0, i[4] // 2, i[3], TN, WK)
         try:
             cursor.execute(sql)
             conn.commit()
         except:
             conn.rollback()
     conn.close()
+
+#查培养方案
+def ShowTrainProgram(name):
+    conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")
+    cursor = conn.cursor()
+
+    sql = "select * from trainingplan where Major='%s'" % (name)
+    try:
+        cursor.execute(sql)
+        conn.close()
+        return cursor.fetchall()
+    except:
+        conn.rollback()
+
+#按专业删老师和学生
+def delofmajor(name):
+    conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")
+    cursor = conn.cursor()
+
+    sql = "delete  from account where ID in (select ID from studentlist where Major='%s' )" % (name)
+    try:
+        cursor.execute(sql)
+        conn.commit()
+    except:
+        conn.rollback()
+
+    sql = "delete  from account where ID in (select ID from teacherlist where Major='%s' )" % (name)
+    try:
+        cursor.execute(sql)
+        conn.commit()
+    except:
+        conn.rollback()
+
+    sql = "delete  from studentlist where Major='%s'" % (name)
+    try:
+        cursor.execute(sql)
+        conn.commit()
+    except:
+        conn.rollback()
+
+    sql = "delete  from teacherlist where Major='%s' " % (name)
+    try:
+        cursor.execute(sql)
+        conn.commit()
+    except:
+        conn.rollback()
+
+    conn.close()
+
+
+
+
+#按id删账号
+
+
+
+
+#删专业
+def DelMAjor(name):
+    conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")
+    cursor = conn.cursor()
+
+    sql = "delete  from collegelist where Major='%s'" % (name)
+    try:
+        cursor.execute(sql)
+        conn.commit()
+    except:
+        conn.rollback()
+
+
+    sql = "delete  from trainingplan where Major='%s'" % (name)
+    try:
+        cursor.execute(sql)
+        conn.commit()
+    except:
+        conn.rollback()
+
+    sql = "delete  from course where Major='%s'" % (name)
+    try:
+        cursor.execute(sql)
+        conn.commit()
+    except:
+        conn.rollback()
+
+    delofmajor(name)
+    conn.close()
+
+
+#删除学院
+def DelCollege(id):
+    conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")
+    cursor = conn.cursor()
+
+    sql = "delete  from trainingplan where Major in (select  Major from collegelist where CollegeID='%d')" % (id)
+    try:
+        cursor.execute(sql)
+        conn.commit()
+    except:
+        conn.rollback()
+
+    sql = "delete  from course where Major in (select  Major from collegelist where CollegeID='%d')" % (id)
+    try:
+        cursor.execute(sql)
+        conn.commit()
+    except:
+        conn.rollback()
+
+    sql="select  Major from collegelist where CollegeID='%d'"%(id)
+    try:
+        cursor.execute(sql)
+        res=cursor.fetchall()
+        for i in res:
+            delofmajor(i[0])
+    except:
+        conn.rollback()
+
+    sql = "delete  from collegelist where CollegeID='%d'" % (id)
+    try:
+        cursor.execute(sql)
+        conn.commit()
+    except:
+        conn.rollback()
+
+    conn.close()
+
 
 
 
