@@ -4,12 +4,13 @@ from dataBaseControl.DataStudent import *
 class Student:
     time = ["", "8:00", "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"]
 
-    def __init__(self, id, name, college, major, grade):
+    def __init__(self, id, name, college, major, grade,identify):
         self.id = id
         self.name = name
         self.college = college
         self.major = major
         self.grade = grade
+        self.identiify=identify
 
     def selfinfomation(self):
         """
@@ -67,5 +68,5 @@ class Student:
             lis.append(k)
         return lis
 
-app = Student(50001, '软件与物联网工程学院', '软件工程', '软件工程', 2)
-print(app.selectionresults())
+# app = Student(50001, '软件与物联网工程学院', '软件工程', '软件工程', 2)
+# print(app.selectionresults())

@@ -2,10 +2,12 @@ from dataBaseControl.DataAdmin import *
 import pandas as pd
 
 
-class admin:
-    def __init__(self, id):
-        self.id = id
+class Admin:
+    def __init__(self):
         self.flag=False
+
+    def viewmessage(self):
+        return ViewMessege()
 
     def allinfomation(self):
         '''
@@ -105,6 +107,6 @@ class admin:
         '''
         return self.flag
 
-
-app = admin(10001)
-print(app.uploadcollege("F:\SelectCourse\logic\College.xlsx"))
+#
+# app = admin(10001)
+# print(app.uploadcollege("F:\SelectCourse\logic\College.xlsx"))

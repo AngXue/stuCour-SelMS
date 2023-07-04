@@ -1,6 +1,20 @@
 import pymysql
 
 
+def ViewMessege():
+    # 打开数据库连接
+    conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")
+    # 使用 cursor() 方法创建一个游标对象 cursor
+    cursor = conn.cursor()
+
+    sql = "select * from messegelist "
+    try:
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        return results
+    except:
+        conn.rollback()
+
 def Querymember():
     # 打开数据库连接
     conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")

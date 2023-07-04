@@ -1,16 +1,17 @@
 from dataBaseControl.DataTeacher import *
 
 
-class teacher:
+class Teacher:
     time = ["", "8:00", "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"]
 
-    def __init__(self, id, name, education, degree, collegeID, college):
+    def __init__(self, id, name, education, degree, collegeID, college,identify):
         self.ID = id
         self.name = name
         self.education = education
         self.degree = degree
         self.collegeID = collegeID
         self.college = college
+        self.identify=identify
 
     # 返回老师信息信息
     def selfinfomation(self):
