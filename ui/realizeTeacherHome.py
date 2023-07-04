@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import QMainWindow
 
 import originalUIFile.teacherHome as uTeacherHome
 import ui.realizeLogin as uLogin
+import ui.realizeUserInformWindow as uUserInformWindow
 
 
 class TeacherHomeWindow(QMainWindow):
@@ -12,8 +13,9 @@ class TeacherHomeWindow(QMainWindow):
         self.slot_init()
         self.setWindowTitle('教师主界面')
         self.teacher = teacher  # 学生对象
+        self.uUserInformWindow = uUserInformWindow.UserInformWindow(self.teacher)
         # 用户一进入主界面就显示任课结果
-        # self.ui.showSearchResult
+        self.ui.showTeachResult(self.teacher)
 
     def slot_init(self):
         """
@@ -22,14 +24,22 @@ class TeacherHomeWindow(QMainWindow):
         """
         self.ui.logOutButton.clicked.connect(self.logOut)
         self.ui.feedbackButton.clicked.connect(self.feedback)
-        self.ui.selfInformButton.clicked.connect(self.getSelfInform)
+        self.ui.selfInformButton.clicked.connect(self.showSelfInform)
 
-    def getSelfInform(self):
+    def showTeachResult(self):
+        """
+        显示任课结果
+        :return: None
+        """
+        # self.ui.showTeachResult(self.teacher)
+        pass
+
+    def showSelfInform(self):
         """
         获取教师信息
         :return: None
         """
-        pass
+        self.uUserInformWindow.show()
 
     def feedback(self):
         """

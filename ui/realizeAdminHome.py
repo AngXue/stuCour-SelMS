@@ -2,6 +2,8 @@ from PyQt5.QtWidgets import QMainWindow
 
 import originalUIFile.adminHome as uadminHome
 import ui.realizeLogin as uLogin
+import ui.realizeAdminColMana as uAdminColMana
+import ui.realizeAdminCourMana as uAdminCourMana
 
 
 class AdminHomeWindow(QMainWindow):
@@ -33,7 +35,8 @@ class AdminHomeWindow(QMainWindow):
         学院信息管理按钮槽函数
         :return: None
         """
-        pass
+        self.adminColManaWindow = uAdminColMana.AdminColManaWindow(self.admin)
+        self.adminColManaWindow.show()
 
     def deleteUsers(self):
         """
@@ -47,7 +50,8 @@ class AdminHomeWindow(QMainWindow):
         课程信息管理按钮槽函数
         :return: None
         """
-        pass
+        self.adminCourManaWindow = uAdminCourMana.AdminCourseManageWindow(self.admin)
+        self.adminCourManaWindow.show()
 
     def startSelectSubs(self):
         """
