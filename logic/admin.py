@@ -4,7 +4,7 @@ import pandas as pd
 
 class Admin:
     def __init__(self):
-        self.flag=False
+        self.flag = False
 
     def viewmessage(self):
         return ViewMessege()
@@ -81,23 +81,19 @@ class Admin:
             res.append(lis)
         UploadCollege(res)
 
-
-
-
-
     def opencourse(self):
         '''
         开启选课
         :return:
         '''
-        self.flag=True
+        self.flag = True
 
     def closecourse(self):
         '''
         关闭选课
         :return:
         '''
-        self.flag=False
+        self.flag = False
 
     def getcourse(self):
         '''
@@ -107,6 +103,6 @@ class Admin:
         return self.flag
 
 #
-app = Admin()
-#print(app.uploadstudent("Student.xlsx"))
-print(app.uploadteacher("Teacher.xlsx"))
+# app = Admin()
+# #print(app.uploadstudent("Student.xlsx"))
+# print(app.uploadteacher("Teacher.xlsx"))

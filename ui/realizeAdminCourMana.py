@@ -4,10 +4,11 @@ import originalUIFile.adminCourseManage as uadminCourseManage
 
 
 class AdminCourseManageWindow(QMainWindow):
-    def __init__(self, parent=None):
+    def __init__(self, admin, parent=None):
         super(AdminCourseManageWindow, self).__init__(parent)
         self.ui = uadminCourseManage.Ui_Dialog()
         self.ui.setupUi(self)
+        self.admin = admin  # 管理员对象
         self.slot_init()
 
     def slot_init(self):

@@ -4,10 +4,11 @@ import originalUIFile.adminCollegeManage as uAdminColMana
 
 
 class AdminColManaWindow(QMainWindow):
-    def __init__(self, parent=None):
+    def __init__(self, admin, parent=None):
         super(QMainWindow, self).__init__(parent)
         self.ui = uAdminColMana.Ui_Dialog()
         self.ui.setupUi(self)
+        self.admin = admin  # 管理员对象
         self.slot_init()
         self.setWindowTitle('学院信息管理')
 

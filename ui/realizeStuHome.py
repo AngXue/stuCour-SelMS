@@ -60,7 +60,7 @@ class StuHome(QMainWindow):
         # self.ui.showSearchResult.resizeColumnsToContents()
         # self.ui.showSearchResult.resizeRowsToContents()
         # 设置表格自适应宽度
-        self.ui.showSearchResult.horizontalHeader().setSectionResizeMode(resizeMode)
+        self.ui.showSearchResult.horizontalHeader().setSectionResizeMode(1)
 
     def showCanSelectSubs(self):
         """

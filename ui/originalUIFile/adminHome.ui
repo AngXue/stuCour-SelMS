@@ -152,19 +152,6 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QLabel" name="searchUsersResult">
-   <property name="geometry">
-    <rect>
-     <x>21</x>
-     <y>214</y>
-     <width>831</width>
-     <height>431</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/admin/temp.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-  </widget>
   <widget class="QLabel" name="topText">
    <property name="geometry">
     <rect>
@@ -210,6 +197,16 @@
      </widget>
     </item>
    </layout>
+  </widget>
+  <widget class="QTableWidget" name="tableWidget">
+   <property name="geometry">
+    <rect>
+     <x>25</x>
+     <y>211</y>
+     <width>821</width>
+     <height>441</height>
+    </rect>
+   </property>
   </widget>
  </widget>
  <resources>
