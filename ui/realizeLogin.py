@@ -45,8 +45,8 @@ class LoginWindow(QMainWindow):
         userPasswd = self.ui.loginPasswdInput.text()
         # userInform = llogin.login(userName, userPasswd)
         # [True/False, id/0,'admin'/'student'/'teacher'/'wrong']
-        userInform = [True, 1, 'admin']
-        # userInform = [True, 1, 'student']
+        # userInform = [True, 1, 'admin']
+        userInform = [True, 2, 'student']
         # userInform = [True, 1, 'teacher']
         # userInform = [False, 0, 'wrong']
         if userInform[0]:

@@ -1,4 +1,3 @@
-# import logic.login as llogin
 from PyQt5.QtWidgets import QMainWindow
 
 import originalUIFile.adminHome as uadminHome
