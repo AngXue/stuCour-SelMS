@@ -2,6 +2,8 @@ from PyQt5.QtGui import QCursor
 from PyQt5.QtWidgets import QMainWindow
 from PyQt5.QtWidgets import QMenu
 from PyQt5.QtWidgets import QTableWidgetItem
+# 导入 QmessageBox
+from PyQt5.QtWidgets import QMessageBox
 
 import originalUIFile.stuHome as uStuhome
 import ui.realizeLogin as uLogin
@@ -21,7 +23,7 @@ class StuHome(QMainWindow):
         self.rightMenuInit()
         self.showCanSelectSubs()
         self.userInformWindow = uUserInformWindow.UserInformWindow(self.student)
-        self.selectedSubsWindow = uSelectedSubsWindow.SelectedSubsWindow(self.student)
+        self.selectedSubsWindow = None
 
     def slot_init(self):
         """
@@ -43,6 +45,9 @@ class StuHome(QMainWindow):
         :param resizeMode: 1: 表格内容自适应 2: 表格宽度自适应 3: 表格内容和宽度都自适应
         :return:
         """
+        if not showData:
+            QMessageBox.information(self, '提示', '未查询到结果', QMessageBox.Ok)
+            return
         # 将数据显示在表格中
         self.ui.showSearchResult.setRowCount(len(showData))
         self.ui.showSearchResult.setColumnCount(len(showData[0]))
@@ -67,12 +72,11 @@ class StuHome(QMainWindow):
         显示可选课程
         :return:
         """
-        # data = self.student.getCanSelectSubs()  # TODO: 调用学生对象的获取可选课程函数
-        # data数据形式 [[1, 2002, '数据结构', '~11:00', 13, '一教101', 30, 0, 2, '软件工程', '老王', '周三']]
-        # 课程号，课程名，学分，上课时间（时），地点，可选人数，已选人数，年级，开课专业，老师姓名，上课时间（天）
+        data = self.student.selectplain()
+        # 课程编号，课程号，课程名，学分，上课时间（时），地点，可选人数，已选人数，年级，开课专业，老师姓名，上课时间（天）
         # 测试数据
-        header = ['课程号', '课程名', '学分', '时间', '地点', '可选人数', '已选人数', '年级', '开课专业', '老师姓名', '星期']
-        data = [[1, '数据结构', 3, '~11:00', '一教101', 30, 0, 2, '软件工程', '可林', '周三']]
+        header = ['选课编号', '课程号', '课程名', '学分', '时间', '地点', '可选人数', '已选人数', '年级', '开课专业', '老师姓名', '星期']
+        # data = [[1, '数据结构', 3, '~11:00', '一教101', 30, 0, 2, '软件工程', '可林', '周三']]
         self.showResult(data, header, 3)
 
     def rightMenuShow(self):
@@ -104,11 +108,19 @@ class StuHome(QMainWindow):
         selectSubsID = self.ui.showSearchResult.item(self.ui.showSearchResult.currentRow(), 0).text()
         # 获取选中的课程名
         selectSubsName = self.ui.showSearchResult.item(self.ui.showSearchResult.currentRow(), 2).text()
-        # 调用学生对象的选课函数 TODO: 调用学生对象的选课函数
-        # if self.student.selectSubs(selectSubsID, selectSubsName):
-        #     QMessageBox.information(self, '提示', '选课成功！')
-        # else:
-        #     QMessageBox.information(self, '提示', '选课失败！')
+        # 获取Weektime, Daytime
+        Weektime = self.ui.showSearchResult.item(self.ui.showSearchResult.currentRow(), 11).text()
+        time = ["", "8:00", "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"]
+        # 假如课程时间是13:00~15:00，那么Daytime=68，取13:00在time中的索引值，即6，取15:00在time中的索引值，即8，Daytime=68
+        Daytime = self.ui.showSearchResult.item(self.ui.showSearchResult.currentRow(), 4).text()
+        numOne = time.index(Daytime.split('~')[0])
+        numTwo = time.index(Daytime.split('~')[1])
+        Daytime = numOne * 10 + numTwo
+        # 调用学生对象的选课函数
+        if self.student.choosecourse(int(selectSubsID), selectSubsName, Weektime, int(Daytime)):
+            QMessageBox.information(self, '提示', '选课成功！')
+        else:
+            QMessageBox.information(self, '提示', '选课失败！')
 
     def logOut(self):
         """
@@ -119,8 +131,8 @@ class StuHome(QMainWindow):
         if self.userInformWindow:
             self.userInformWindow.close()
         # 如果self.selectedSubsWindow存在，关闭
-        if self.selectedSubsWindow:
-            self.selectedSubsWindow.close()
+        # if self.selectedSubsWindow is not None:
+        #     self.selectedSubsWindow.close()
         self.deleteLater()
         self.loginWindow = uLogin.LoginWindow()
         self.loginWindow.show()
@@ -137,6 +149,7 @@ class StuHome(QMainWindow):
         获取已选课程按钮槽函数
         :return: None
         """
+        self.selectedSubsWindow = uSelectedSubsWindow.SelectedSubsWindow(self.student)
         self.selectedSubsWindow.show()
 
     def searchSubs(self):
@@ -150,11 +163,11 @@ class StuHome(QMainWindow):
         if searchContent == '':
             self.showCanSelectSubs()
             return
-        # searchData = self.student.searchcourse(searchContent) TODO: 调用学生对象的搜索课程函数
+        searchData = self.student.searchcourse(searchContent)
         # 选课编号 ，课程号，课程名，学分，上课时间（时），地点，可选人数，已选人数，年级，开课专业，老师姓名，上课时间（天）
         # [[1, 2002, '数据结构', '~11:00', 13, '一教101', 30, 0, 2, '软件工程', '老王', '周三']]
         # 测试数据
         header = ['课程ID', '课程名', '学分', '上课时间', '学时', '上课地点', '容量', '已选人数', '年级', '开课专业',
                   '教师名', '上课时间']
-        searchData = [[1, 2002, '数据结构', '~11:00', 13, '一教101', 30, 0, 2, '软件工程', '搜王', '周三']]
+        # searchData = [[1, 2002, '数据结构', '~11:00', 13, '一教101', 30, 0, 2, '软件工程', '搜王', '周三']]
         self.showResult(searchData, header, 3)

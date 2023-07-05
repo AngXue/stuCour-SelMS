@@ -37,10 +37,13 @@ class SelectedSubsWindow(QMainWindow):
         """
         # 选课编号  课程号，课程名，学分，时间（时），地点，老师姓名，时间（天）
         # [[1, 2002, '数据结构', 4, '8:00~10:00', '一教101', '老王', '周三']]
-        # data = self.student.selectionresults()  TODO: 从数据库中获取数据
+        data = self.student.selectionresults()
+        if not data:
+            QtWidgets.QMessageBox.information(self, '提示', '选课清单为空', QtWidgets.QMessageBox.Ok)
+            self.deleteLater()
+            return
         # 测试数据
-        data = [[1, 2002, '数据结构', 4, '8:00~10:00', '一教101', '老王', '周三'],
-                [2, 2003, '操作系统', 4, '10:00~12:00', '一教102', '老李', '周四']]
+        # data = [[1, 2002, '数据结构', 4, '8:00~10:00', '一教101', '老王', '周三'], [2, 2003, '操作系统', 4, '10:00~12:00', '一教102', '老李', '周四']]
         # 显示在表格中
         self.ui.showSelectedSubs.setRowCount(len(data))
         self.ui.showSelectedSubs.setColumnCount(len(data[0]))
@@ -92,6 +95,7 @@ class SelectedSubsWindow(QMainWindow):
         # 获取当前选中的课程号
         sub_id = self.ui.showSelectedSubs.item(row, 0).text()
         # 退选课程
-        # self.student.drop_sub(sub_id) TODO: 从数据库中删除数据
+        self.student.withdrawalcourse(int(sub_id))
         # 刷新显示
         self.showSearchResult()
+

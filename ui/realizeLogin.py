@@ -49,10 +49,10 @@ class LoginWindow(QMainWindow):
         if userName == '123456' and userPasswd == '123456':
             self.hide()
             self.adminHome = ui.realizeAdminHome.AdminHomeWindow(self.admin)
+            self.hide()
             self.adminHome.show()
             return
-        userInform = llogin.login(int(userName), userPasswd)  # TODO: 账号有问题
-        user = llogin.createobject(userInform[1], userInform[2])
+        userInform = llogin.login(int(userName), userPasswd)
         # id, name, college, major, grade, identity
         # user = lstudent.Student(1, '张三', '计算机学院', '计算机科学与技术', 2, 'student')
         # 教师属性：id, name, education, degree, collegeID, college, identify, major
@@ -63,11 +63,12 @@ class LoginWindow(QMainWindow):
         # userInform = [True, 1, 'teacher']
         # userInform = [False, 0, 'wrong']
         if userInform[0]:
+            user = llogin.createobject(userInform[1], userInform[2])
             self.hide()
             if userInform[2] == 'student':
                 self.stuHome = ui.realizeStuHome.StuHome(user)
                 self.stuHome.show()
-            else:
+            elif userInform[2] == 'teacher':
                 self.teacherHome = ui.realizeTeacherHome.TeacherHomeWindow(user)
                 self.teacherHome.show()
         else:
