@@ -1,10 +1,11 @@
 from PyQt5.QtWidgets import QMainWindow
+# 导入QmessageBox
 from PyQt5.QtWidgets import QTableWidgetItem
 
 import originalUIFile.teacherHome as uTeacherHome
 import ui.realizeLogin as uLogin
-import ui.realizeUserInformWindow as uUserInformWindow
 import ui.realizeTeacherFeedBack as uTeacherFeedback
+import ui.realizeUserInformWindow as uUserInformWindow
 
 
 class TeacherHomeWindow(QMainWindow):
@@ -35,10 +36,11 @@ class TeacherHomeWindow(QMainWindow):
         ((1, 2001, '数据库', 4, 10:00~12:00, '一教101', 0),)
         :return: None
         """
-        # data = self.teacher.searchteaching() TODO: 调用查询任课函数, 返回任课信息
+        data = self.teacher.searchteaching()
+        if not data:
+            return
         # 测试数据
-        data = ((1, 2001, '数据库', 4, '10:00~12:00', '一教101', 0),
-                (2, 2002, '数据结构', 4, '10:00~12:00', '一教101', 0))
+        # data = ((1, 2001, '数据库', 4, '10:00~12:00', '一教101', 0), (2, 2002, '数据结构', 4, '10:00~12:00', '一教101', 0))
         self.ui.showTeacherSubsResult.setRowCount(len(data))
         self.ui.showTeacherSubsResult.setColumnCount(len(data[0]))
         for i in range(len(data)):

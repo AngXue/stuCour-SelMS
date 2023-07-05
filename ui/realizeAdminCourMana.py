@@ -1,8 +1,8 @@
 from PyQt5 import QtWidgets
+from PyQt5.QtGui import QCursor
 from PyQt5.QtWidgets import QMainWindow
 from PyQt5.QtWidgets import QMenu
 from PyQt5.QtWidgets import QTableWidgetItem
-from PyQt5.QtGui import QCursor
 
 import originalUIFile.adminCourseManage as uadminCourseManage
 
@@ -75,13 +75,14 @@ class AdminCourseManageWindow(QMainWindow):
         self.contextMenu = QMenu()
         self.actionA = self.contextMenu.addAction('删除课程')
         self.actionA.triggered.connect(self.deleteCourse)
+        # self.actionB = self.contextMenu.addAction('修改课程')
 
     def setCourseteacher(self):
         """
         设置课程教师
         :return:
         """
-        pass
+        # TODO
 
     def uploadCourse(self):
         """
@@ -89,7 +90,7 @@ class AdminCourseManageWindow(QMainWindow):
         :return:
         """
         filePath = QtWidgets.QFileDialog.getOpenFileName(self, '选择文件', './', 'Excel files(*.xlsx , *.xls)')
-        # self.admin.uploadcourse(filePath) # TODO: 连接数据库
+        self.admin.uploadcourse(filePath)
 
     def deleteCourse(self):
         """
@@ -109,9 +110,13 @@ class AdminCourseManageWindow(QMainWindow):
         选课编号 ，课程号，课程名，学分，时间，地点，可选人数，已选人数，年级，开课专业，教师姓名，星期
         :return:
         """
-        # data = self.admin.searchCourse() # TODO: 连接数据库
+        # 获取输入的课程ID或名称
+        searchContent = self.ui.adminSearchCourse.text()
+        if searchContent == '':
+            return
+        data = self.admin.searchcourse(searchContent)
         # 测试数据
-        data = [[1, 2002, '数据结构', '~11:00', 13, '一教101', 30, 0, 2, '软件工程', '老王', '周三']]
-        dataHeader = ['选课编号', '课程号', '课程名', '时间', '学分', '地点', '可选人数', '已选人数', '年级', '开课专业', '教师姓名', '星期']
+        # data = [[1, 2002, '数据结构', '~11:00', 13, '一教101', 30, 0, 2, '软件工程', '老王', '周三']]
+        dataHeader = ['选课编号', '课程号', '课程名', '学分', '时间', '地点', '可选人数', '已选人数', '年级',
+                      '开课专业', '教师姓名', '星期']
         self.showResult(data, dataHeader)
-

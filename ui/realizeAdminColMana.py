@@ -32,7 +32,7 @@ class AdminColManaWindow(QMainWindow):
         :return: None
         """
         filePath = QtWidgets.QFileDialog.getOpenFileName(self, '选择文件', './', 'Excel files(*.xlsx , *.xls)')
-        # self.admin.uploadTrainInform(filePath) # TODO: 连接数据库
+        self.admin.uploadTrainInform(filePath)
 
     def uploadCollegeAndMajorInform(self):
         """
@@ -40,7 +40,7 @@ class AdminColManaWindow(QMainWindow):
         :return: None
         """
         filePath = QtWidgets.QFileDialog.getOpenFileName(self, '选择文件', './', 'Excel files(*.xlsx , *.xls)')
-        # self.admin.uploadCollegeAndMajorInform(filePath) # TODO: 连接数据库
+        self.admin.uploadCollegeAndMajorInform(filePath)
 
     def showCollegeInform(self):
         """
@@ -50,23 +50,23 @@ class AdminColManaWindow(QMainWindow):
         :return: None
         """
         # 学院信息：学院ID、学院名称
-        # collegeList = self.admin.getCollegeInform() # TODO: 连接数据库
+        collegeList = self.admin.searchcollege()
         # 测试数据
-        collegeList = [['1', '计算机学院'], ['2', '软件学院']]
+        # collegeList = [['1', '计算机学院'], ['2', '软件学院']]
         # 显示学院信息
         # 添加学院节点，然后分别将其专业添加为子节点
         for college in collegeList:
             collegeNode = QTreeWidgetItem(self.ui.showCollegeResult)
             # 每个学院节点的文本：计算机学院 [1]
-            collegeNodeStr = college[1] + ' [' + college[0] + ']'
+            collegeNodeStr = str(college[1]) + ' [' + str(college[0]) + ']'
             collegeNode.setText(0, collegeNodeStr)  # 设置第一列的文本
             # 添加专业节点
             # 专业节点的文本：计算机科学与技术
             # 将计算机科学与技术和软件工程添加为计算机学院的子节点
             # 专业信息：专业名称
-            # majorList = self.admin.getMajorInform(collegeID) # TODO: 连接数据库
+            majorList = self.admin.searchmajor(college[0])
             # 测试数据
-            majorList = ['计算机科学与技术', '软件工程']
+            # majorList = ['计算机科学与技术', '软件工程']
             for major in majorList:
                 majorNode = QTreeWidgetItem(collegeNode)
                 majorNode.setText(0, major)
@@ -109,11 +109,11 @@ class AdminColManaWindow(QMainWindow):
         # 获取专业所属学院ID和专业名称
         collegeID = self.ui.showCollegeResult.currentItem().parent().text(0).split('[')[1].split(']')[0]
         majorName = self.ui.showCollegeResult.currentItem().text(0)
-        # data = self.admin.showTrainProgram(collegeID, majorName) # TODO: 连接数据库
+        data = self.admin.showTrainProgram(collegeID, majorName)
         # 课程号 课程名 学分 专业名 学期
         # 测试数据
         header = ['课程号', '课程名', '学分', '专业名', '学期']
-        data = [['1', '高等数学', '5', '计算机科学与技术', '1'], ['2', '线性代数', '4', '计算机科学与技术', '1']]
+        # data = [['1', '高等数学', '5', '计算机科学与技术', '1'], ['2', '线性代数', '4', '计算机科学与技术', '1']]
         self.uMajorTrainWindow = uMajorTrain.MajorTrainWindow(header, data)
         self.uMajorTrainWindow.show()
 
@@ -125,7 +125,7 @@ class AdminColManaWindow(QMainWindow):
         # 获取专业所属学院ID和专业名称
         collegeID = self.ui.showCollegeResult.currentItem().parent().text(0).split('[')[1].split(']')[0]
         majorName = self.ui.showCollegeResult.currentItem().text(0)
-        # self.admin.delMajor(collegeID, majorName) # TODO: 连接数据库
+        self.admin.delMajor(collegeID, majorName)
 
     def delCollege(self):
         """
@@ -134,7 +134,7 @@ class AdminColManaWindow(QMainWindow):
         """
         # 获取学院ID
         collegeID = self.ui.showCollegeResult.currentItem().text(0).split('[')[1].split(']')[0]
-        # self.admin.delCollege(collegeID) # TODO: 连接数据库
+        self.admin.delCollege(collegeID)
 
     def closeEvent(self, event):
         """

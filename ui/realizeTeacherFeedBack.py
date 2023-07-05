@@ -1,4 +1,6 @@
 from PyQt5.QtWidgets import QMainWindow
+# 导入QmessageBox
+from PyQt5.QtWidgets import QMessageBox
 
 import originalUIFile.teacherFeedback as uTeacherFeedback
 
@@ -29,4 +31,5 @@ class TeacherFeedbackWindow(QMainWindow):
         """
         # 获取反馈信息
         feedback = self.ui.messageTextEdit.toPlainText()
-        # self.teacher.feedback(feedback) TODO: 调用教师反馈函数
+        self.teacher.feedback(feedback)
+        QMessageBox.information(self, '提示', '提交成功')

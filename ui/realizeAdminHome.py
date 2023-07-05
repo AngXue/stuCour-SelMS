@@ -55,7 +55,7 @@ class AdminHomeWindow(QMainWindow):
         startID = self.ui.deleteStartInput.text()
         endID = self.ui.deleteEndInput.text()
         # 删除用户
-        # self.admin.deletefomatin(startID, endID) # TODO: 连接数据库
+        self.admin.deletefomatin(startID, endID)
 
     def manageSubsInform(self):
         """
@@ -69,7 +69,7 @@ class AdminHomeWindow(QMainWindow):
         开启选课按钮槽函数
         :return: None
         """
-        # self.admin.opencourse() # TODO: 连接数据库
+        self.admin.opencourse()
 
     def searchUsers(self):
         """
@@ -82,11 +82,12 @@ class AdminHomeWindow(QMainWindow):
         # 获取用户输入的信息
         searchInfo = self.ui.searchUsersInput.text()
         # 查询用户
-        # self.admin.queryinfomation(searchInfo) # TODO: 连接数据库
+        if searchInfo == '':
+            return
+        data = self.admin.queryinfomation(searchInfo)
         # 数据 [[1001, '老杰', '艺术学院', '硕士研究生', '博士学位', 'teacher'], [50001, '陈名杰', '软件与物联网工程', '软件工程', 'student']]
         # 测试数据
-        data = [[1001, '老杰', '艺术学院', '硕士研究生', '博士学位', 'teacher'],
-                [50001, '陈名杰', '软件与物联网工程', '本科生', '软件工程', 'student']]
+        # data = [[1001, '老杰', '艺术学院', '硕士研究生', '博士学位', 'teacher'], [50001, '陈名杰', '软件与物联网工程', '本科生', '软件工程', 'student']]
         self.ui.tableWidget.setRowCount(len(data))
         self.ui.tableWidget.setColumnCount(len(data[0]))
         for i in range(len(data)):
@@ -131,14 +132,14 @@ class AdminHomeWindow(QMainWindow):
         # 获取选中行的第一列的内容
         _id = self.ui.tableWidget.item(row, 0).text()
         # 删除用户
-        # self.admin.deletefomatin(_id, _id) # TODO: 连接数据库
+        self.admin.deletefomatin(_id, _id)
 
     def stopSelectSubs(self):
         """
         停止选课按钮槽函数
         :return: None
         """
-        # self.admin.closecourse() # TODO: 连接数据库
+        self.admin.closecourse()
 
     def uploadStusInform(self):
         """
@@ -148,7 +149,7 @@ class AdminHomeWindow(QMainWindow):
         # 打开文件选择对话框
         # 获取文件路径
         filePath = QtWidgets.QFileDialog.getOpenFileName(self, '选择文件', './', 'Excel files(*.xlsx , *.xls)')
-        # self.admin.uploadstudent(filePath) # TODO: 连接数据库
+        self.admin.uploadstudent(filePath)
 
     def uploadTeachersInform(self):
         """
@@ -156,7 +157,7 @@ class AdminHomeWindow(QMainWindow):
         :return: None
         """
         filePath = QtWidgets.QFileDialog.getOpenFileName(self, '选择文件', './', 'Excel files(*.xlsx , *.xls)')
-        # self.admin.uploadteacher(filePath) # TODO: 连接数据库
+        self.admin.uploadteacher(filePath)
 
     def logOut(self):
         """
