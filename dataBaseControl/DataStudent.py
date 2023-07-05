@@ -17,10 +17,10 @@ def quiryaccount(id,password):
         if (len(results)==0):
             return [False,0,'wrong']
         else:
-            if(id==10001):
+            if(id==123456):
                 conn.close()
                 return [True, id,'admin']
-            elif(id>2000):
+            elif(id>10000):
                 conn.close()
                 return [True, id,'student']
             else:

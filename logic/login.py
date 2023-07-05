@@ -23,12 +23,11 @@ def createobject(id,identify):
         res=QuiryStudent(id)
         t=list(res[0])
         return st.Student(t[0],t[1],t[2],t[3],t[4],t[5])
-    elif(identify=='teacher'):
+    else:
         res = QuiryTeacher(id)
         t=list(res[0])
-        return te.Teacher(t[0], t[1], t[2], t[3], t[4], t[5],t[6])
-    else:
-        return ad.Admin()
+        return te.Teacher(t[0], t[1], t[2], t[3], t[4], t[5],t[6],t[7])
+
 
 # app=createobject(1,'admin')
 # print(app.viewmessage())
