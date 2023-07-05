@@ -326,7 +326,7 @@ def delofmajor(name):
 
 
 
-#按id删账号
+
 
 
 
@@ -398,6 +398,21 @@ def DelCollege(id):
         conn.rollback()
 
     conn.close()
+
+
+def SearchMajor(id):
+    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD,
+                           charset=value.CHARSET, db=value.DB)
+    cursor = conn.cursor()
+
+    sql = "select  Major from collegelist where CollegeID='%d'" % (id)
+    try:
+        cursor.execute(sql)
+        res = cursor.fetchall()
+        return res
+    except:
+        conn.rollback()
+
 
 
 

@@ -132,6 +132,14 @@ class Admin:
     def delCollege(self,collegeid):
         DelCollege(collegeid)
 
+    def searchmajor(self,collegeid):
+        '''
+        获取学院的专业
+        :param collegeid:
+        :return:
+        '''
+        return SearchMajor(collegeid)
+
 # app = Admin()
 # print(app.uploadstudent("Student.xlsx"))
 #print(app.uploadcourse("软件工程.xlsx"))
