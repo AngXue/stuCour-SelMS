@@ -182,7 +182,14 @@
       </property>
      </widget>
     </item>
-    <item alignment="Qt::AlignHCenter">
+    <item alignment="Qt::AlignRight">
+     <widget class="QPushButton" name="getFeedBack">
+      <property name="text">
+       <string>查看反馈</string>
+      </property>
+     </widget>
+    </item>
+    <item alignment="Qt::AlignLeft">
      <widget class="QPushButton" name="logOutButton">
       <property name="text">
        <string>登出</string>

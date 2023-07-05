@@ -22,12 +22,8 @@ class AdminCourseManageWindow(QMainWindow):
         槽函数初始化
         :return:
         """
-        self.ui.uploadCourseButton.clicked.connect(self.uploadCourse)
         self.ui.courseSearchButton.clicked.connect(self.courseSearch)
-        self.ui.setCourseteacherButton.clicked.connect(self.setCourseteacher)
-        self.ui.setSubTeacherInput.returnPressed.connect(self.setCourseteacher)
         # 设置提示信息
-        self.ui.setSubTeacherInput.setPlaceholderText('新的课程教师ID')
         self.ui.adminSearchCourse.setPlaceholderText('请输入需要搜索的课程ID或名称')
 
     def showResult(self, showData, showDataHeader, resizeMode=1):
@@ -82,7 +78,7 @@ class AdminCourseManageWindow(QMainWindow):
         设置课程教师
         :return:
         """
-        # TODO
+        pass
 
     def uploadCourse(self):
         """
@@ -90,7 +86,11 @@ class AdminCourseManageWindow(QMainWindow):
         :return:
         """
         filePath = QtWidgets.QFileDialog.getOpenFileName(self, '选择文件', './', 'Excel files(*.xlsx , *.xls)')
+        if filePath[0] == '':
+            return
         self.admin.uploadcourse(filePath)
+        # 提示上传成功
+        QtWidgets.QMessageBox.information(self, '提示', '上传成功！')
 
     def deleteCourse(self):
         """

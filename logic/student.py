@@ -29,7 +29,7 @@ class Student:
         res = electresult(self.id)
         lis = []
         for i in range(len(res)):
-            k = list(res[0])
+            k = list(res[i])
             l = k[4] // 10
             r = k[4] % 10
             k[4] = "%s~%s" % (self.time[l], self.time[r])

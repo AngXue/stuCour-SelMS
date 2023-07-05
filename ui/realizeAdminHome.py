@@ -7,6 +7,7 @@ import originalUIFile.adminHome as uadminHome
 import ui.realizeAdminColMana as uAdminColMana
 import ui.realizeAdminCourMana as uAdminCourMana
 import ui.realizeLogin as uLogin
+import ui.realizeAdminFeedBack as uAdminFeedBack
 
 
 class AdminHomeWindow(QMainWindow):
@@ -20,6 +21,7 @@ class AdminHomeWindow(QMainWindow):
         self.setWindowTitle('管理员主界面')
         self.adminColManaWindow = uAdminColMana.AdminColManaWindow(self.admin)
         self.adminCourManaWindow = uAdminCourMana.AdminCourseManageWindow(self.admin)
+        self.adminFeedBackWindow = uAdminFeedBack.AdminFeedBackWindow(self.admin)
 
     def slot_init(self):
         """
@@ -38,6 +40,14 @@ class AdminHomeWindow(QMainWindow):
         self.ui.searchUsersInput.returnPressed.connect(self.searchUsers)
         # 设置提示信息
         self.ui.searchUsersInput.setPlaceholderText('请输入需要搜索的用户的ID或姓名')
+        self.ui.getFeedBack.clicked.connect(self.showFeedBack)
+
+    def showFeedBack(self):
+        """
+        显示反馈信息
+        :return: None
+        """
+        self.adminFeedBackWindow.show()
 
     def manageCollegeInform(self):
         """
@@ -55,7 +65,7 @@ class AdminHomeWindow(QMainWindow):
         startID = self.ui.deleteStartInput.text()
         endID = self.ui.deleteEndInput.text()
         # 删除用户
-        self.admin.deletefomatin(startID, endID)
+        self.admin.deletefomatin(int(startID), int(endID))
 
     def manageSubsInform(self):
         """
@@ -88,6 +98,9 @@ class AdminHomeWindow(QMainWindow):
         # 数据 [[1001, '老杰', '艺术学院', '硕士研究生', '博士学位', 'teacher'], [50001, '陈名杰', '软件与物联网工程', '软件工程', 'student']]
         # 测试数据
         # data = [[1001, '老杰', '艺术学院', '硕士研究生', '博士学位', 'teacher'], [50001, '陈名杰', '软件与物联网工程', '本科生', '软件工程', 'student']]
+        if not data:
+            QtWidgets.QMessageBox.information(self, '提示', '未查询到该用户')
+            return
         self.ui.tableWidget.setRowCount(len(data))
         self.ui.tableWidget.setColumnCount(len(data[0]))
         for i in range(len(data)):
@@ -132,7 +145,7 @@ class AdminHomeWindow(QMainWindow):
         # 获取选中行的第一列的内容
         _id = self.ui.tableWidget.item(row, 0).text()
         # 删除用户
-        self.admin.deletefomatin(_id, _id)
+        self.admin.deletefomatin(int(_id), int(_id))
 
     def stopSelectSubs(self):
         """
@@ -149,7 +162,11 @@ class AdminHomeWindow(QMainWindow):
         # 打开文件选择对话框
         # 获取文件路径
         filePath = QtWidgets.QFileDialog.getOpenFileName(self, '选择文件', './', 'Excel files(*.xlsx , *.xls)')
-        self.admin.uploadstudent(filePath)
+        if filePath[0] == '':
+            return
+        self.admin.uploadstudent(filePath[0])
+        # 提示上传成功
+        QtWidgets.QMessageBox.information(self, '提示', '上传成功')
 
     def uploadTeachersInform(self):
         """
@@ -157,7 +174,12 @@ class AdminHomeWindow(QMainWindow):
         :return: None
         """
         filePath = QtWidgets.QFileDialog.getOpenFileName(self, '选择文件', './', 'Excel files(*.xlsx , *.xls)')
-        self.admin.uploadteacher(filePath)
+        # 如果用户没有选择文件，则返回
+        if filePath[0] == '':
+            return
+        self.admin.uploadteacher(filePath[0])
+        # 提示上传成功
+        QtWidgets.QMessageBox.information(self, '提示', '上传成功')
 
     def logOut(self):
         """
@@ -170,6 +192,9 @@ class AdminHomeWindow(QMainWindow):
         # 如果self.adminCourManaWindow存在，则关闭
         if self.adminCourManaWindow:
             self.adminCourManaWindow.close()
+        # 如果self.adminFeedBackWindow存在，则关闭
+        if self.adminFeedBackWindow:
+            self.adminFeedBackWindow.close()
         self.deleteLater()
         self.loginWindow = uLogin.LoginWindow()
         self.loginWindow.show()

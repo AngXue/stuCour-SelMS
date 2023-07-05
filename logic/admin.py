@@ -41,6 +41,7 @@ class Admin:
         :param place: 文件绝对路径
         :return:
         '''
+        # 读取excel文件
         df = pd.read_excel(place)
 
         res = []
@@ -161,9 +162,9 @@ class Admin:
             lis.append(k)
         return lis
 
-app = Admin()
+# app = Admin()
 # print(app.uploadstudent("Student.xlsx"))
-print(app.uploadcourse(r'F:\stuCour-SelMS\logic\data\软件工程.xlsx'))
+# print(app.uploadcourse(r'F:\stuCour-SelMS\logic\data\软件工程.xlsx'))
 # print(app.uploadteacher("Teacher.xlsx"))
 # print(app.delMajor(1,'软件工程'))
 # print(app.delCollege(1))

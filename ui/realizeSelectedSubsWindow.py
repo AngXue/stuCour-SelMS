@@ -28,7 +28,8 @@ class SelectedSubsWindow(QMainWindow):
         槽函数初始化
         :return:
         """
-        pass
+        # 设置已选学分
+        self.ui.label.setText('已选学分：' + str(self.student.getscore()))
 
     def showSearchResult(self):
         """

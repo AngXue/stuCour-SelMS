@@ -32,7 +32,13 @@ class AdminColManaWindow(QMainWindow):
         :return: None
         """
         filePath = QtWidgets.QFileDialog.getOpenFileName(self, '选择文件', './', 'Excel files(*.xlsx , *.xls)')
-        self.admin.uploadTrainInform(filePath)
+        if filePath[0] == '':
+            return
+        self.admin.uploadcourse(filePath[0])
+        self.ui.showCollegeResult.clear()
+        self.showCollegeInform()
+        # 提示上传成功
+        QtWidgets.QMessageBox.information(self, '提示', '上传成功！')
 
     def uploadCollegeAndMajorInform(self):
         """
@@ -40,7 +46,14 @@ class AdminColManaWindow(QMainWindow):
         :return: None
         """
         filePath = QtWidgets.QFileDialog.getOpenFileName(self, '选择文件', './', 'Excel files(*.xlsx , *.xls)')
-        self.admin.uploadCollegeAndMajorInform(filePath)
+        # 如果文件为空
+        if filePath[0] == '':
+            return
+        self.admin.uploadcollege(filePath[0])
+        self.ui.showCollegeResult.clear()
+        self.showCollegeInform()
+        # 提示上传成功
+        QtWidgets.QMessageBox.information(self, '提示', '上传成功！')
 
     def showCollegeInform(self):
         """
@@ -110,6 +123,8 @@ class AdminColManaWindow(QMainWindow):
         collegeID = self.ui.showCollegeResult.currentItem().parent().text(0).split('[')[1].split(']')[0]
         majorName = self.ui.showCollegeResult.currentItem().text(0)
         data = self.admin.showTrainProgram(collegeID, majorName)
+        if not data:
+            return
         # 课程号 课程名 学分 专业名 学期
         # 测试数据
         header = ['课程号', '课程名', '学分', '专业名', '学期']
@@ -126,6 +141,9 @@ class AdminColManaWindow(QMainWindow):
         collegeID = self.ui.showCollegeResult.currentItem().parent().text(0).split('[')[1].split(']')[0]
         majorName = self.ui.showCollegeResult.currentItem().text(0)
         self.admin.delMajor(collegeID, majorName)
+        # 刷新界面
+        self.ui.showCollegeResult.clear()
+        self.showCollegeInform()
 
     def delCollege(self):
         """
@@ -134,7 +152,10 @@ class AdminColManaWindow(QMainWindow):
         """
         # 获取学院ID
         collegeID = self.ui.showCollegeResult.currentItem().text(0).split('[')[1].split(']')[0]
-        self.admin.delCollege(collegeID)
+        self.admin.delCollege(int(collegeID))
+        # 刷新界面
+        self.ui.showCollegeResult.clear()
+        self.showCollegeInform()
 
     def closeEvent(self, event):
         """

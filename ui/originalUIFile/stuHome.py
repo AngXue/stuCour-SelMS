@@ -15,6 +15,8 @@ class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.resize(751, 596)
+        Dialog.setMinimumSize(QtCore.QSize(751, 596))
+        Dialog.setMaximumSize(QtCore.QSize(751, 596))
         self.horizontalLayoutWidget = QtWidgets.QWidget(Dialog)
         self.horizontalLayoutWidget.setGeometry(QtCore.QRect(19, 50, 721, 61))
         self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")

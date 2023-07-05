@@ -60,6 +60,19 @@
     <string>已选课程</string>
    </property>
   </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>661</x>
+     <y>9</y>
+     <width>161</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>已选学分：</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

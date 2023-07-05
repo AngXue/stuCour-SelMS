@@ -1,6 +1,7 @@
-import pymysql
-import pymysql
 import random
+
+import pymysql
+
 import value
 
 sum = 0
@@ -77,8 +78,12 @@ def Queryinfomation(res):
         try:
             cursor.execute(sql)
             results = cursor.fetchall()
-            if (len(results) != 0):
-                k.append(list(results[0]))
+            temp = []
+            res = 0
+            for i in results:
+                temp=[i[0],i[1],i[2],i[3],'本科生',i[4 ]]
+                if (len(results) != 0):
+                    k.append(temp)
         except:
             conn.rollback()
         conn.close()
@@ -98,9 +103,12 @@ def Queryinfomation(res):
         try:
             cursor.execute(sql)
             results = cursor.fetchall()
+            temp = []
+            res = 0
             for i in results:
-                k.append(list(i))
-            conn.close()
+                temp = [i[0], i[1], i[2], i[3], '本科生', i[4]]
+                if (len(results) != 0):
+                    k.append(temp)
         except:
             conn.rollback()
 
@@ -121,7 +129,7 @@ def DeleteFomation(idl, idr):
             conn.commit()
         except:
             conn.rollback()
-        i+=1
+        i += 1
 
     i = idl
     while (i <= idr):
@@ -277,7 +285,7 @@ def ArrangeCourse(res):
         WK = Week[random.randint(0, 4)]
         sql = "insert  into  course \
         values('%d','%d','%s','%d','%d','%s','%d','%d','%d','%s','%s','%s')" % (sum, i[0], i[1], i[2], TP, \
-                                                                                CR, 5, 0, (i[4]+1) // 2, i[3], TN, WK)
+                                                                                CR, 5, 0, (i[4] + 1) // 2, i[3], TN, WK)
         try:
             cursor.execute(sql)
             conn.commit()
@@ -417,7 +425,7 @@ def SearchMajor(id):
     try:
         cursor.execute(sql)
         res = cursor.fetchall()
-        k=[]
+        k = []
         for i in res:
             k.append(i[0])
         return k
@@ -442,13 +450,14 @@ def SearchCollege():
 # 按名字查找课程
 def SearchCourse(res):
     # 打开数据库连接
-    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD, charset=value.CHARSET, db=value.DB)
+    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD,
+                           charset=value.CHARSET, db=value.DB)
     # 使用 cursor() 方法创建一个游标对象 cursor
     cursor = conn.cursor()
     k = []
     if res[0] >= '0' and res[0] <= '9':
         res = int(res)
-        sql = "select * from course where CourseId = '%s'" %(res)
+        sql = "select * from course where CourseId = '%s'" % (res)
 
         try:
             cursor.execute(sql)

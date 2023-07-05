@@ -27,6 +27,9 @@ class Ui_Dialog(object):
         self.topPrompt = QtWidgets.QLabel(Dialog)
         self.topPrompt.setGeometry(QtCore.QRect(400, 10, 72, 15))
         self.topPrompt.setObjectName("topPrompt")
+        self.label = QtWidgets.QLabel(Dialog)
+        self.label.setGeometry(QtCore.QRect(661, 9, 161, 31))
+        self.label.setObjectName("label")
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -35,3 +38,4 @@ class Ui_Dialog(object):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
         self.topPrompt.setText(_translate("Dialog", "已选课程"))
+        self.label.setText(_translate("Dialog", "已选学分："))

@@ -229,12 +229,12 @@ def CheckTime(weektime,daytime,id):
 def check(a,b):
     lisa=[]
     lisb=[]
-    l=a/10
+    l=a//10
     r=a%10
     while(l<=r):
         lisa.append(l)
         l+=1
-    l = b / 10
+    l = b // 10
     r = b % 10
     while (l <= r):
         lisb.append(l)
@@ -261,6 +261,7 @@ def CheckScore(id,selectid):
     sql = "select * from course where SelectID = '%d'  " % (selectid)
     score1=0
     score2=0
+    sum = 0
     try:
         cursor.execute(sql)
         results = cursor.fetchall()
@@ -273,7 +274,7 @@ def CheckScore(id,selectid):
     try:
         cursor.execute(sql)
         results = cursor.fetchall()
-        sum=results[0][1]
+        sum+=results[0][1]
         score2+=results[0][2]
     except:
         conn.rollback()
