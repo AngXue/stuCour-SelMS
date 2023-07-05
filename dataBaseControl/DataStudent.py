@@ -209,17 +209,20 @@ def CheckTime(weektime,daytime,id):
     conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD, charset=value.CHARSET, db=value.DB)
     # 使用 cursor() 方法创建一个游标对象 cursor
     cursor = conn.cursor()
-
-    sql = "select * from (selectresult,course)  where CourseTime = '%d' and Time='%s' and ID='%d' " % (daytime,weektime,id)
+    # sql = "select course.CourseName from selectresult,course  where selectresult.SelectID = course.SelectID \
+    # and selectresult.ID='%d'" % (
+    #     id)
+    sql = "select Time,CourseTime from selectresult,course  where selectresult.SelectID = course.SelectID\
+            and ID='%d' " % (id)
 
     try:
         cursor.execute(sql)
         results = cursor.fetchall()
         conn.close()
-        if (len(results) == 0):
-            return True
-        else:
-            return False
+        for i in results:
+            if(weektime==i[0] and daytime==i[1]):
+                return False
+        return True
     except:
         conn.rollback()
 

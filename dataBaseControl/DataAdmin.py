@@ -114,12 +114,14 @@ def DeleteFomation(idl, idr):
 
     i = idl
     while (i <= idr):
+
         sql = "delete  from teacherlist where ID='%d'" % (i)
         try:
             cursor.execute(sql)
             conn.commit()
         except:
             conn.rollback()
+        i+=1
 
     i = idl
     while (i <= idr):
@@ -129,6 +131,7 @@ def DeleteFomation(idl, idr):
             conn.commit()
         except:
             conn.rollback()
+        i += 1
 
     i = idl
     while (i <= idr):
@@ -138,6 +141,7 @@ def DeleteFomation(idl, idr):
             conn.commit()
         except:
             conn.rollback()
+        i += 1
 
     conn.close()
 
