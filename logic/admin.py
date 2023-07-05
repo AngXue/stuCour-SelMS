@@ -140,6 +140,9 @@ class Admin:
         '''
         return SearchMajor(collegeid)
 
+    def searchcollege(self):
+        return SearchCollege()
+
 # app = Admin()
 # print(app.uploadstudent("Student.xlsx"))
 #print(app.uploadcourse("软件工程.xlsx"))

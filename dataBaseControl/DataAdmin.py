@@ -2,13 +2,14 @@ import pymysql
 import pymysql
 import random
 import value
-sum = 0
 
+sum = 0
 
 
 def ViewMessege():
     # 打开数据库连接
-    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD, charset=value.CHARSET, db=value.DB)
+    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD,
+                           charset=value.CHARSET, db=value.DB)
     # 使用 cursor() 方法创建一个游标对象 cursor
     cursor = conn.cursor()
 
@@ -23,7 +24,8 @@ def ViewMessege():
 
 def Querymember():
     # 打开数据库连接
-    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD, charset=value.CHARSET, db=value.DB)
+    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD,
+                           charset=value.CHARSET, db=value.DB)
     # 使用 cursor() 方法创建一个游标对象 cursor
     cursor = conn.cursor()
 
@@ -55,7 +57,8 @@ def Querymember():
 
 
 def Queryinfomation(res):
-    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD, charset=value.CHARSET, db=value.DB)
+    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD,
+                           charset=value.CHARSET, db=value.DB)
     cursor = conn.cursor()
     k = []
     if res[0] >= '0' and res[0] <= '9':
@@ -140,12 +143,13 @@ def DeleteFomation(idl, idr):
 
 
 def UploadTeacher(lis):
-    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD, charset=value.CHARSET, db=value.DB)
+    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD,
+                           charset=value.CHARSET, db=value.DB)
     cursor = conn.cursor()
 
     for i in lis:
         sql = "insert into  teacherlist values('%d','%s','%s','%s','%d','%s','%s','%s')" % (
-        i[0], i[1], i[2], i[3], i[4], i[5], i[6],i[7])
+            i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7])
         try:
             cursor.execute(sql)
             conn.commit()
@@ -163,7 +167,8 @@ def UploadTeacher(lis):
 
 
 def UploadStudent(lis):
-    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD, charset=value.CHARSET, db=value.DB)
+    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD,
+                           charset=value.CHARSET, db=value.DB)
     cursor = conn.cursor()
 
     for i in lis:
@@ -185,7 +190,8 @@ def UploadStudent(lis):
 
 
 def UploadCollege(lis):
-    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD, charset=value.CHARSET, db=value.DB)
+    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD,
+                           charset=value.CHARSET, db=value.DB)
     cursor = conn.cursor()
 
     for i in lis:
@@ -199,7 +205,8 @@ def UploadCollege(lis):
 
 
 def UploadCourse(res):
-    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD, charset=value.CHARSET, db=value.DB)
+    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD,
+                           charset=value.CHARSET, db=value.DB)
     cursor = conn.cursor()
 
     for i in res:
@@ -213,7 +220,8 @@ def UploadCourse(res):
 
 
 def ArrangeCourse(res):
-    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD, charset=value.CHARSET, db=value.DB)
+    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD,
+                           charset=value.CHARSET, db=value.DB)
     cursor = conn.cursor()
 
     # sql = "select  Name,Major from teacherlist "
@@ -260,8 +268,6 @@ def ArrangeCourse(res):
 
         TN = teachername[cnt][random.randint(0, len(teachername[cnt]) - 1)]
 
-
-
         TP = temp[random.randint(0, 9)]
         CR = Classroom[random.randint(0, roomlen - 1)]
         WK = Week[random.randint(0, 4)]
@@ -275,9 +281,11 @@ def ArrangeCourse(res):
             conn.rollback()
     conn.close()
 
-#查培养方案
+
+# 查培养方案
 def ShowTrainProgram(name):
-    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD, charset=value.CHARSET, db=value.DB)
+    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD,
+                           charset=value.CHARSET, db=value.DB)
     cursor = conn.cursor()
 
     sql = "select * from trainingplan where Major='%s'" % (name)
@@ -288,9 +296,11 @@ def ShowTrainProgram(name):
     except:
         conn.rollback()
 
-#按专业删老师和学生
+
+# 按专业删老师和学生
 def delofmajor(name):
-    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD, charset=value.CHARSET, db=value.DB)
+    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD,
+                           charset=value.CHARSET, db=value.DB)
     cursor = conn.cursor()
 
     sql = "delete  from account where ID in (select ID from studentlist where Major='%s' )" % (name)
@@ -324,16 +334,10 @@ def delofmajor(name):
     conn.close()
 
 
-
-
-
-
-
-
-
-#删专业
+# 删专业
 def DelMAjor(name):
-    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD, charset=value.CHARSET, db=value.DB)
+    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD,
+                           charset=value.CHARSET, db=value.DB)
     cursor = conn.cursor()
 
     sql = "delete  from collegelist where Major='%s'" % (name)
@@ -342,7 +346,6 @@ def DelMAjor(name):
         conn.commit()
     except:
         conn.rollback()
-
 
     sql = "delete  from trainingplan where Major='%s'" % (name)
     try:
@@ -362,9 +365,10 @@ def DelMAjor(name):
     conn.close()
 
 
-#删除学院
+# 删除学院
 def DelCollege(id):
-    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD, charset=value.CHARSET, db=value.DB)
+    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD,
+                           charset=value.CHARSET, db=value.DB)
     cursor = conn.cursor()
 
     sql = "delete  from trainingplan where Major in (select  Major from collegelist where CollegeID='%d')" % (id)
@@ -381,10 +385,10 @@ def DelCollege(id):
     except:
         conn.rollback()
 
-    sql="select  Major from collegelist where CollegeID='%d'"%(id)
+    sql = "select  Major from collegelist where CollegeID='%d'" % (id)
     try:
         cursor.execute(sql)
-        res=cursor.fetchall()
+        res = cursor.fetchall()
         for i in res:
             delofmajor(i[0])
     except:
@@ -414,6 +418,15 @@ def SearchMajor(id):
         conn.rollback()
 
 
+def SearchCollege():
+    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD,
+                           charset=value.CHARSET, db=value.DB)
+    cursor = conn.cursor()
 
-
-
+    sql = "select  distinct CollegeID,College from collegelist "
+    try:
+        cursor.execute(sql)
+        res = cursor.fetchall()
+        return res
+    except:
+        conn.rollback()
