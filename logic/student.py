@@ -64,7 +64,7 @@ class Student:
         return lis
 
     def getscore(self):
-        GetScore(self.id)
+        return GetScore(self.id)
 
 
     def searchcourse(self, coursename):
