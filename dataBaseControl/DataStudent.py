@@ -242,9 +242,9 @@ def check(a,b):
     for i in lisa:
         for j in lisb:
             if(i==j):
-                return False
+                return True
 
-    return True
+    return False
 
 
 def CheckScore(id,selectid):
