@@ -334,6 +334,22 @@ def UpDataScore(id,selectid,flag):
 
 
 
+def GetScore(id):
+    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD,
+                           charset=value.CHARSET, db=value.DB)
+    # 使用 cursor() 方法创建一个游标对象 cursor
+    cursor = conn.cursor()
+
+    sql = "select score from studentscore where ID = '%d'  " % (id)
+    try:
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        return results[0][0]
+    except:
+        conn.rollback()
+
+
+
 
 
 

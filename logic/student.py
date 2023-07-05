@@ -63,6 +63,10 @@ class Student:
             lis.append(k)
         return lis
 
+    def getscore(self):
+        GetScore(self.id)
+
+
     def searchcourse(self, coursename):
         """
         :param coursename: 搜索的课程名，不需要全名

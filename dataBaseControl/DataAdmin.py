@@ -273,7 +273,7 @@ def ArrangeCourse(res):
         WK = Week[random.randint(0, 4)]
         sql = "insert  into  course \
         values('%d','%d','%s','%d','%d','%s','%d','%d','%d','%s','%s','%s')" % (sum, i[0], i[1], i[2], TP, \
-                                                                                CR, 10, 0, i[4] // 2, i[3], TN, WK)
+                                                                                CR, 5, 0, i[4] // 2, i[3], TN, WK)
         try:
             cursor.execute(sql)
             conn.commit()
