@@ -413,7 +413,10 @@ def SearchMajor(id):
     try:
         cursor.execute(sql)
         res = cursor.fetchall()
-        return res
+        k=[]
+        for i in res:
+            k.append(i[0])
+        return k
     except:
         conn.rollback()
 
