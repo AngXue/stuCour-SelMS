@@ -5,6 +5,7 @@ import value
 sum = 0
 
 
+
 def ViewMessege():
     # 打开数据库连接
     conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD, charset=value.CHARSET, db=value.DB)

@@ -3,6 +3,7 @@ import random
 from faker import Faker
 import value
 
+
 # 查帐号
 def quiryaccount(id,password):
     # 打开数据库连接

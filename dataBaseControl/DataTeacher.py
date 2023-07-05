@@ -2,6 +2,7 @@ import pymysql
 import random
 from faker import Faker
 import value
+
 #发送老师信息
 def feedbackmessege(name,s):
     '''
