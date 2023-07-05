@@ -1,6 +1,7 @@
 import pymysql
 import random
 from faker import Faker
+import value
 
 #发送老师信息
 def feedbackmessege(name,s):
@@ -10,7 +11,7 @@ def feedbackmessege(name,s):
     :param s:
     :return:
     '''
-    conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")
+    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD, charset=value.CHARSET, db=value.DB)
     cursor = conn.cursor()
 
     sql="insert into messegelist (Name,Messege) values('%s','%s') " %(name,s)
@@ -32,7 +33,8 @@ def SearchTeaching(name):
     :return: 课表
     '''
 
-    conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")
+    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD,
+                           charset=value.CHARSET, db=value.DB)
     cursor = conn.cursor()
 
     sql = "select SelectID, CourseID,CourseName,score,CourseTime,CoursePlace,Selectnum from course where TeacherName='%s' " % (name)
@@ -48,7 +50,7 @@ def SearchTeaching(name):
     conn.close()
 
 def QuiryTeacher(id):
-    conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")
+    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD, charset=value.CHARSET, db=value.DB)
     cursor = conn.cursor()
 
     sql = "select * from teacherlist where ID='%d' " % (id)
