@@ -132,7 +132,7 @@ class Admin:
     def delCollege(self,collegeid):
         DelCollege(collegeid)
 
-app = Admin()
+# app = Admin()
 # print(app.uploadstudent("Student.xlsx"))
 #print(app.uploadcourse("软件工程.xlsx"))
 # print(app.uploadteacher("Teacher.xlsx"))
@@ -140,6 +140,6 @@ app = Admin()
 # print(app.delCollege(1))
 #app.uploadcollege("College.xlsx")
 
-app.delCollege(101)
+# app.delCollege(101)
 
 
