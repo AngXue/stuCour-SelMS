@@ -1,12 +1,12 @@
 import pymysql
 import random
 from faker import Faker
-
+import value
 
 # 查帐号
 def quiryaccount(id,password):
     # 打开数据库连接
-    conn = pymysql.connect(host='localhost',port=3306,user='root',passwd='123456',charset='utf8',db="test")
+    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD, charset=value.CHARSET, db=value.DB)
     # 使用 cursor() 方法创建一个游标对象 cursor
     cursor = conn.cursor()
 
@@ -38,7 +38,7 @@ def QuiryStudent(id):
     :return:
     '''
     # 打开数据库连接
-    conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")
+    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD, charset=value.CHARSET, db=value.DB)
     # 使用 cursor() 方法创建一个游标对象 cursor
     cursor = conn.cursor()
 
@@ -54,7 +54,7 @@ def QuiryStudent(id):
 # 查选课结果
 def electresult(id):
     # 打开数据库连接
-    conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")
+    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD, charset=value.CHARSET, db=value.DB)
     # 使用 cursor() 方法创建一个游标对象 cursor
     cursor = conn.cursor()
 
@@ -72,7 +72,7 @@ def electresult(id):
 # 查找能选课程
 def Trainplain(major,grade):
     # 打开数据库连接
-    conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")
+    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD, charset=value.CHARSET, db=value.DB)
     # 使用 cursor() 方法创建一个游标对象 cursor
     cursor = conn.cursor()
 
@@ -91,7 +91,7 @@ def Trainplain(major,grade):
 # 按名字查找课程
 def SearchCourse(res):
     # 打开数据库连接
-    conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")
+    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD, charset=value.CHARSET, db=value.DB)
     # 使用 cursor() 方法创建一个游标对象 cursor
     cursor = conn.cursor()
     k = []
@@ -121,7 +121,7 @@ def SearchCourse(res):
 #查询课程
 def QueryCourse(id):
     # 打开数据库连接
-    conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")
+    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD, charset=value.CHARSET, db=value.DB)
     # 使用 cursor() 方法创建一个游标对象 cursor
     cursor = conn.cursor()
 
@@ -143,7 +143,7 @@ def QueryCourse(id):
 #添加选课
 def AddCourse(id,selectid):
     # 打开数据库连接
-    conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")
+    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD, charset=value.CHARSET, db=value.DB)
     # 使用 cursor() 方法创建一个游标对象 cursor
     cursor = conn.cursor()
 
@@ -160,7 +160,7 @@ def AddCourse(id,selectid):
 #是否已选择课程
 def CheckCourse(name,id):
     # 打开数据库连接
-    conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")
+    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD, charset=value.CHARSET, db=value.DB)
     # 使用 cursor() 方法创建一个游标对象 cursor
     cursor = conn.cursor()
 
@@ -181,7 +181,7 @@ def CheckCourse(name,id):
 #修改课程信息
 def UpDateCourse(num,selectid):
     # 打开数据库连接
-    conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")
+    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD, charset=value.CHARSET, db=value.DB)
     # 使用 cursor() 方法创建一个游标对象 cursor
     cursor = conn.cursor()
 
@@ -205,7 +205,7 @@ def CheckTime(weektime,daytime,id):
     :param id:  选课人学号
     :return: 不冲突 true, 冲突为false
     '''
-    conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")
+    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD, charset=value.CHARSET, db=value.DB)
     # 使用 cursor() 方法创建一个游标对象 cursor
     cursor = conn.cursor()
 
@@ -230,7 +230,7 @@ def CheckScore(id,selectid):
     :param selectid:
     :return:  够 true 不够 false
     '''
-    conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")
+    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD, charset=value.CHARSET, db=value.DB)
     # 使用 cursor() 方法创建一个游标对象 cursor
     cursor = conn.cursor()
 
@@ -266,7 +266,7 @@ def CheckScore(id,selectid):
 
 #撤销课程
 def WithdrawalCourse(id,selectID):
-    conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")
+    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD, charset=value.CHARSET, db=value.DB)
     # 使用 cursor() 方法创建一个游标对象 cursor
     cursor = conn.cursor()
 
@@ -298,7 +298,7 @@ def WithdrawalCourse(id,selectID):
 
 #跟新学分
 def UpDataScore(id,selectid,flag):
-    conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='123456', charset='utf8', db="test")
+    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD, charset=value.CHARSET, db=value.DB)
     # 使用 cursor() 方法创建一个游标对象 cursor
     cursor = conn.cursor()
 
