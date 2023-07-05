@@ -220,11 +220,31 @@ def CheckTime(weektime,daytime,id):
         results = cursor.fetchall()
         conn.close()
         for i in results:
-            if(weektime==i[0] and daytime==i[1]):
+            if(weektime==i[0] and check(daytime,i[1])):
                 return False
         return True
     except:
         conn.rollback()
+
+def check(a,b):
+    lisa=[]
+    lisb=[]
+    l=a/10
+    r=a%10
+    while(l<=r):
+        lisa.append(l)
+        l+=1
+    l = b / 10
+    r = b % 10
+    while (l <= r):
+        lisb.append(l)
+        l += 1
+    for i in lisa:
+        for j in lisb:
+            if(i==j):
+                return False
+
+    return True
 
 
 def CheckScore(id,selectid):
