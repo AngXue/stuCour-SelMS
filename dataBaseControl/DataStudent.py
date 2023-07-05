@@ -165,16 +165,16 @@ def CheckCourse(name,id):
     # 使用 cursor() 方法创建一个游标对象 cursor
     cursor = conn.cursor()
 
-    sql = "select * from (selectresult,course)  where CourseName = '%s' and ID='%d'" % (name,id)
+    sql = "select course.CourseName from selectresult,course  where selectresult.SelectID = course.SelectID and selectresult.ID='%d'" %(id)
 
     try:
         cursor.execute(sql)
         results = cursor.fetchall()
         conn.close()
-        if(len(results)==0):
-            return True
-        else:
-            return False
+        for i in results:
+            if(name==i[0]):
+                return False
+        return True
     except:
         conn.rollback()
 
