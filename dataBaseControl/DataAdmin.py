@@ -430,3 +430,35 @@ def SearchCollege():
         return res
     except:
         conn.rollback()
+
+
+# 按名字查找课程
+def SearchCourse(res):
+    # 打开数据库连接
+    conn = pymysql.connect(host=value.HOST, port=value.PORT, user=value.USER, passwd=value.PASSWD, charset=value.CHARSET, db=value.DB)
+    # 使用 cursor() 方法创建一个游标对象 cursor
+    cursor = conn.cursor()
+    k = []
+    if res[0] >= '0' and res[0] <= '9':
+        res = int(res)
+        sql = "select * from course where CourseId = '%s'" %(res)
+
+        try:
+            cursor.execute(sql)
+            results = cursor.fetchall()
+            for i in results:
+                k.append(i)
+            conn.close()
+        except:
+            conn.rollback()
+    else:
+        sql = "select * from course where CourseName LIKE'%%%s%%'" % (res)
+        try:
+            cursor.execute(sql)
+            results = cursor.fetchall()
+            for i in results:
+                k.append(i)
+        except:
+            conn.rollback()
+
+    return k

@@ -143,6 +143,22 @@ class Admin:
     def searchcollege(self):
         return SearchCollege()
 
+    def searchcourse(self, coursename):
+        """
+        :param coursename: 搜索的课程名，不需要全名
+        :return: 每个包括 选课编号 ，课程号，课程名，学分，上课时间（时），地点，可选人数，已选人数，年级，开课专业，老师姓名，上课时间（天）
+                [[1, 2002, '数据结构', '~11:00', 13, '一教101', 30, 0, 2, '软件工程', '老王', '周三']]
+        """
+        res = SearchCourse(coursename)
+        lis = []
+        for i in range(len(res)):
+            k = list(res[i])
+            l = k[4] // 10
+            r = k[4] % 10
+            k[4] = "%s~%s" % (self.time[l], self.time[r])
+            lis.append(k)
+        return lis
+
 # app = Admin()
 # print(app.uploadstudent("Student.xlsx"))
 #print(app.uploadcourse("软件工程.xlsx"))
