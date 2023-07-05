@@ -113,6 +113,7 @@ class Admin:
         :return:
         '''
         df = pd.read_excel(place)
+        #print(df)
         res = []
         for i in range(df.shape[0]):
             lis = []
@@ -160,9 +161,9 @@ class Admin:
             lis.append(k)
         return lis
 
-# app = Admin()
+app = Admin()
 # print(app.uploadstudent("Student.xlsx"))
-#print(app.uploadcourse("软件工程.xlsx"))
+print(app.uploadcourse(r'F:\stuCour-SelMS\logic\data\软件工程.xlsx'))
 # print(app.uploadteacher("Teacher.xlsx"))
 # print(app.delMajor(1,'软件工程'))
 # print(app.delCollege(1))
